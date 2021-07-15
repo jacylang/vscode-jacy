@@ -116,6 +116,13 @@
             ],
             "description": "impl type"
         },
+        "type-alias": {
+            "prefix": "type",
+            "body": [
+                "type ${1:Name} = ${2:Type};"
+            ],
+            "description": "type-alias"
+        },
         "for-loop": {
             "prefix": "for",
             "body": [
