@@ -123,6 +123,22 @@
             ],
             "description": "type-alias"
         },
+        "mod": {
+            "prefix": "mod",
+            "body": [
+                "mod ${1:module_name} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "module"
+        },
+        "use": {
+            "prefix": "use",
+            "body": [
+                "use ${1:contents};"
+            ],
+            "description": "use-decl"
+        },
         "for-loop": {
             "prefix": "for",
             "body": [
