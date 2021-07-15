@@ -151,6 +151,27 @@
                 "}"
             ],
             "description": "while-let"
+        },
+        "return": {
+            "prefix": "return",
+            "body": [
+                "return $0;"
+            ],
+            "description": "return"
+        },
+        "break": {
+            "prefix": "break",
+            "body": [
+                "break $0;"
+            ],
+            "description": "break"
+        },
+        "continue": {
+            "prefix": "continue",
+            "body": [
+                "continue;"
+            ],
+            "description": "continue"
         }
     }
 }
