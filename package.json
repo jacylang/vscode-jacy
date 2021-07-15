@@ -20,11 +20,23 @@
             "aliases": ["Jacy", "jacy"],
             "extensions": [".jc"],
             "configuration": "./language-configuration.json"
+        }, {
+            "id": "jacy-injection"
         }],
         "grammars": [{
             "language": "jacy",
             "scopeName": "source.jc",
             "path": "./syntaxes/jacy.tmLanguage.json"
+        }, {
+            "language": "jacy-injection",
+            "scopeName": "markdown.jacy.codeblock",
+            "path": "./syntaxes/codeblock.json",
+            "injectTo": [
+                "text.html.markdown"
+            ],
+            "embeddedLanguages": {
+                "meta.embedded.block.jacy": "jacy"
+            }
         }],
         "snippets": [{
             "language": "jacy",

@@ -92,7 +92,7 @@
 					"match": "\\b(break|continue|else|if|in|for|loop|match|return|while)\\b"
 				},
 				{
-					"comment": "Keyword",
+					"comment": "Keywords",
 					"name": "keyword.other.jacy",
 					"match": "\\b(party|mod|let|ref|use|super|as|move)\\b"
 				},
