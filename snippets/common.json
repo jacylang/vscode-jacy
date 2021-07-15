@@ -45,6 +45,112 @@
                 "}"
             ],
             "description": "match expression"
+        },
+        "if expression": {
+            "prefix": "if",
+            "body": [
+                "if ${1:value} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "if"
+        },
+        "if-let": {
+            "prefix": "if let",
+            "body": [
+                "if let ${1:pattern} = ${2:expression} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "if-let"
+        },
+        "func definition": {
+            "prefix": "func",
+            "body": [
+                "func ${1:name}(${2:params}) {",
+                "\t$0",
+                "}"
+            ],
+            "description": "func"
+        },
+        "lambda expression": {
+            "prefix": "\\_",
+            "body": [
+                "\\(${1:params}) -> $0"
+            ],
+            "description": "lambda"
+        },
+        "struct definition": {
+            "prefix": "struct",
+            "body": [
+                "struct ${1:Name} {",
+                "\t${2:fieldName}: ${3:Type},$0",
+                "}"
+            ],
+            "description": "struct"
+        },
+        "trait definition": {
+            "prefix": "trait",
+            "body": [
+                "trait ${1:Name} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "trait"
+        },
+        "impl for": {
+            "prefix": "impl-for",
+            "body": [
+                "impl ${1:Trait} for ${2:Type} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "impl for"
+        },
+        "impl": {
+            "prefix": "impl",
+            "body": [
+                "impl ${1:Type}",
+                "\t$0",
+                "}"
+            ],
+            "description": "impl type"
+        },
+        "for-loop": {
+            "prefix": "for",
+            "body": [
+                "for ${1:pattern} in ${2:expression} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "for-loop"
+        },
+        "loop": {
+            "prefix": "loop",
+            "body": [
+                "loop {",
+                "\t$0",
+                "}"
+            ],
+            "description": "loop"
+        },
+        "while": {
+            "prefix": "while",
+            "body": [
+                "while ${1:expression}",
+                "\t$0",
+                "}"
+            ],
+            "description": "while"
+        },
+        "while-let": {
+            "prefix": "while let",
+            "body": [
+                "while let ${1:pattern} = ${2:expression} {",
+                "\t$0",
+                "}"
+            ],
+            "description": "while-let"
         }
     }
 }
