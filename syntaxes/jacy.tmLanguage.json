@@ -27,6 +27,9 @@
 			"include": "#modifiers"
 		},
 		{
+			"include": "#literals"
+		},
+		{
 			"include": "#lifetime"
 		},
 		{
@@ -34,9 +37,6 @@
 		},
 		{
 			"include": "#types"
-		},
-		{
-			"include": "#literals"
 		},
 		{
 			"include": "#func"
@@ -268,7 +268,7 @@
 			"lifetime": {
 				"comment": "Lifetime",
 				"name": "storage.modifier.lifetime.jacy",
-				"match": "'([\\p{Alpha}_][\\w]*)?!'\\b",
+				"match": "'([\\p{Alpha}_][\\w]*)\\b",
 				"captures": {
 					"1": {
 						"name": "entity.name.lifetime.jacy"
