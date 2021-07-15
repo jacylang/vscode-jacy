@@ -3,6 +3,11 @@
     "displayName": "Jacy lang",
     "description": "Syntax highlighting for Jacy programming language",
     "version": "0.0.1",
+    "publisher": "jacy-lang",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hazer-hazer/Jacy-VSC"
+    },
     "engines": {
         "vscode": "^1.58.0"
     },
