@@ -20,6 +20,10 @@
             "language": "jacy",
             "scopeName": "source.jc",
             "path": "./syntaxes/jacy.tmLanguage.json"
+        }],
+        "snippets": [{
+            "language": "jacy",
+            "path": "snippets/common.json"
         }]
     }
 }

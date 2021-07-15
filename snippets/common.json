@@ -1,0 +1,8 @@
+{
+    ".source.jc": {
+        "Enum definition": {
+            "prefix": "enum",
+            "body": "enum ${1:Name} {\n    $2\n}"
+        }
+    }
+}
