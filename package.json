@@ -2,8 +2,9 @@
     "name": "jacy-lang",
     "displayName": "Jacy lang",
     "description": "Syntax highlighting for Jacy programming language",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "publisher": "jacy-lang",
+    "icon": "images/Jacy.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/hazer-hazer/Jacy-VSC"
