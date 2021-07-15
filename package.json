@@ -7,7 +7,7 @@
     "icon": "assets/Jacy.png",
     "repository": {
         "type": "git",
-        "url": "https://github.com/hazer-hazer/Jacy-VSC"
+        "url": "https://github.com/hazer-hazer/vscode-jacy"
     },
     "engines": {
         "vscode": "^1.58.0"
