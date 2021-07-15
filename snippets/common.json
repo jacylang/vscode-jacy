@@ -12,28 +12,28 @@
         "let statement": {
             "prefix": "let",
             "body": [
-                "let ${1:name} = ${2:value};"
+                "let ${1:pattern} = ${2:value};"
             ],
             "description": "let statement"
         },
         "let borrow": {
             "prefix": "let ref",
             "body": [
-                "let ref ${1:name} = ${2:value};"
+                "let ref ${1:pattern} = ${2:value};"
             ],
             "description": "let borrow"
         },
         "let match reference": {
             "prefix": "let &",
             "body": [
-                "let &${1:name} = ${2:value};"
+                "let &${1:pattern} = ${2:value};"
             ],
             "description": "let match reference"
         },
         "let destruct struct": {
             "prefix": "let {",
             "body": [
-                "let ${1:struct} {${2:field}} = ${3:value};"
+                "let ${1:StructName} {${2:field}} = ${3:value};"
             ],
             "description": "let match struct"
         },
@@ -41,7 +41,7 @@
             "prefix": "match",
             "body": [
                 "match ${1:value} {",
-                "\t${2:pattern} => ${3:expression}",
+                "\t${2:pattern} => ${3:expression},",
                 "}"
             ],
             "description": "match expression"
