@@ -6,15 +6,6 @@
 	],
 	"patterns": [
 		{
-			"comment": "Call expression",
-			"match": "\\b([\\p{Alpha}_][\\w]*)\\s*(?=\\()",
-			"captures": {
-				"1": {
-					"name": "entity.name.function.jacy"
-				}
-			}
-		},
-		{
 			"include": "#comments"
 		},
 		{
@@ -230,7 +221,17 @@
 				"comment": "Generic parameters/Arguments",
 				"name": "meta.generic_params.jacy",
 				"begin": "<(?![=<])",
+				"beginCaptures": {
+					"0": {
+						"name": "keyword.operator.generic_params.begin.jacy"
+					}
+				},
 				"end": ">",
+				"endCaptures": {
+					"0": {
+						"name": "keyword.operator.generic_params.end.jacy"
+					}
+				},
 				"patterns": [
 					{
 						"include": "#comments"
@@ -242,6 +243,10 @@
 								"name": "keyword.operator.generic_params.jacy"
 							}
 						}
+					},
+					{
+						"name": "entity.name.type.jacy",
+						"match": "[A-Z][A-Z_]*"
 					},
 					{
 						"include": "#sigils"
