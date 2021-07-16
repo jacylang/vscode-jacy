@@ -5,7 +5,10 @@
     "version": "0.0.3",
     "publisher": "jacy-lang",
     "icon": "assets/Jacy.png",
-    "main": "./out/extension.js",
+    "galleryBanner": {
+        "color": "#fffcfc",
+        "theme": "light"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/hazer-hazer/vscode-jacy"
@@ -17,6 +20,7 @@
         "Programming Languages",
         "Snippets"
     ],
+    "main": "./out/extension.js",
     "activationEvents": [
         "onLanguage:jacy"
     ],
