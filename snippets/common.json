@@ -74,7 +74,7 @@
         "func definition": {
             "prefix": "func",
             "body": [
-                "func ${1:name}(${2:params}) {",
+                "func ${1:name}(${2:params}: ${3: Type})${4:: Type} {",
                 "\t$0",
                 "}"
             ],
