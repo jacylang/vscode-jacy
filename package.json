@@ -5,6 +5,7 @@
     "version": "0.0.3",
     "publisher": "jacy-lang",
     "icon": "assets/Jacy.png",
+    "main": "./out/extension.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/hazer-hazer/vscode-jacy"
@@ -16,33 +17,55 @@
         "Programming Languages",
         "Snippets"
     ],
+    "activationEvents": [
+        "onLanguage:jacy"
+    ],
     "contributes": {
-        "languages": [{
-            "id": "jacy",
-            "aliases": ["Jacy", "jacy"],
-            "extensions": [".jc"],
-            "configuration": "./language-configuration.json"
-        }, {
-            "id": "jacy-injection"
-        }],
-        "grammars": [{
-            "language": "jacy",
-            "scopeName": "source.jc",
-            "path": "./syntaxes/jacy.tmLanguage.json"
-        }, {
-            "language": "jacy-injection",
-            "scopeName": "markdown.jacy.codeblock",
-            "path": "./syntaxes/codeblock.json",
-            "injectTo": [
-                "text.html.markdown"
-            ],
-            "embeddedLanguages": {
-                "meta.embedded.block.jacy": "jacy"
+        "languages": [
+            {
+                "id": "jacy",
+                "aliases": [
+                    "Jacy",
+                    "jacy"
+                ],
+                "extensions": [
+                    ".jc"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "jacy-injection"
             }
-        }],
-        "snippets": [{
-            "language": "jacy",
-            "path": "snippets/common.json"
-        }]
-    }
+        ],
+        "grammars": [
+            {
+                "language": "jacy",
+                "scopeName": "source.jc",
+                "path": "./syntaxes/jacy.tmLanguage.json"
+            },
+            {
+                "language": "jacy-injection",
+                "scopeName": "markdown.jacy.codeblock",
+                "path": "./syntaxes/codeblock.json",
+                "injectTo": [
+                    "text.html.markdown"
+                ],
+                "embeddedLanguages": {
+                    "meta.embedded.block.jacy": "jacy"
+                }
+            }
+        ],
+        "snippets": [
+            {
+                "language": "jacy",
+                "path": "snippets/common.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.58.1",
+        "typescript": "^4.3.5",
+        "vsce": "^1.95.1"
+    },
+    "dependencies": {}
 }

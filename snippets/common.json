@@ -1,5 +1,12 @@
 {
     ".source.jc": {
+        "todo": {
+            "prefix": "todo",
+            "body": [
+                "// TODO: $0"
+            ],
+            "description": "TODO Comment"
+        },
         "enum definition": {
             "prefix": "enum",
             "body": [
