@@ -39,6 +39,16 @@
             },
             {
                 "id": "jacy-injection"
+            },
+            {
+                "id": "jon",
+                "aliases": [
+                    "Jon",
+                    "jon"
+                ],
+                "extensions": [
+                    ".jon"
+                ]
             }
         ],
         "grammars": [
@@ -46,6 +56,11 @@
                 "language": "jacy",
                 "scopeName": "source.jc",
                 "path": "./syntaxes/jacy.tmLanguage.json"
+            },
+            {
+                "language": "jon",
+                "scopeName": "source.jon",
+                "path": "./syntaxes/jon.tmLanguage.json"
             },
             {
                 "language": "jacy-injection",
@@ -64,7 +79,11 @@
                 "language": "jacy",
                 "path": "snippets/common.json"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "Jacy"
+        },
+        "commands": []
     },
     "devDependencies": {
         "@types/vscode": "^1.58.0",

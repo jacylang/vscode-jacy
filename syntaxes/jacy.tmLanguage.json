@@ -261,451 +261,451 @@
 			"comment": "Sigils",
 			"name": "keyword.operator.sigil.jacy",
 			"match": "[&*](?=[\\w\\(\\[\\|\\\"]+)"
-			},
-			"modifiers": {
-				"patterns": [
-					{
-						"comment": "Mut modifier",
-						"name": "storage.modifier.mut.jacy",
-						"match": "\\bmut\\b"
-					},
-					{
-						"comment": "Pub modifier",
-						"name": "storage.modifier.pub.jacy",
-						"match": "\\bpub\\b"
-					},
-					{
-						"comment": "Const modifier",
-						"name": "storage.modifier.const.jacy",
-						"match": "\\bconst\\b"
-					},
-					{
-						"comment": "Static modifier",
-						"name": "storage.modifier.static.jacy",
-						"match": "\\bstatic\\b"
-					}
-				]
-			},
-			"types": {
-				"patterns": [
-					{
-						"comment": "Built-in types",
-						"name": "storage.type.core.jacy",
-						"match": "\\b(bool|char|[ui](?:8|16|32|64|128)|f(?:16|32|64|128)|usize|isize|str|String|Self|Option|Result)\\b"
-					}
-				]
-			},
-			"generic_params": {
-				"comment": "Generic parameters/Arguments",
-				"name": "meta.generic_params.jacy",
-				"begin": "<(?![=<])",
-				"beginCaptures": {
-					"0": {
-						"name": "keyword.operator.generic_params.begin.jacy"
-					}
+		},
+		"modifiers": {
+			"patterns": [
+				{
+					"comment": "Mut modifier",
+					"name": "storage.modifier.mut.jacy",
+					"match": "\\bmut\\b"
 				},
-				"end": ">",
-				"endCaptures": {
-					"0": {
-						"name": "keyword.operator.generic_params.end.jacy"
-					}
+				{
+					"comment": "Pub modifier",
+					"name": "storage.modifier.pub.jacy",
+					"match": "\\bpub\\b"
 				},
-				"patterns": [
-					{
-						"include": "#comments"
-					},
-					{
-						"match": "\\b\\s*(=)\\s*\\b",
-						"captures": {
-							"1": {
-								"name": "keyword.operator.generic_params.jacy"
-							}
-						}
-					},
-					{
-						"name": "entity.name.type.jacy",
-						"match": "[A-Z][A-Z_]*"
-					},
-					{
-						"include": "#sigils"
-					},
-					{
-						"include": "#modifiers"
-					},
-					{
-						"include": "#types"
-					},
-					{
-						"include": "#generic_params"
-					},
-					{
-						"include": "#lifetime"
-					}
-				]
-			},
-			"lifetime": {
-				"comment": "Lifetime",
-				"name": "storage.modifier.lifetime.jacy",
-				"match": "'([\\p{Alpha}_][\\w]*)\\b",
-				"captures": {
-					"1": {
-						"name": "entity.name.lifetime.jacy"
-					}
+				{
+					"comment": "Const modifier",
+					"name": "storage.modifier.const.jacy",
+					"match": "\\bconst\\b"
+				},
+				{
+					"comment": "Static modifier",
+					"name": "storage.modifier.static.jacy",
+					"match": "\\bstatic\\b"
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{
+					"comment": "Built-in types",
+					"name": "storage.type.core.jacy",
+					"match": "\\b(bool|char|[ui](?:8|16|32|64|128)|f(?:16|32|64|128)|usize|isize|str|String|Self|Option|Result)\\b"
+				}
+			]
+		},
+		"generic_params": {
+			"comment": "Generic parameters/Arguments",
+			"name": "meta.generic_params.jacy",
+			"begin": "<(?![=<])",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.operator.generic_params.begin.jacy"
 				}
 			},
-			"ref_lifetime": {
-				"comment": "Reference lifetime (`&'a expr`)",
-				"match": "(&)('([\\p{Alpha}_][\\w]()))\\b",
-				"captures": {
-					"1": {
-						"name": "keyword.operator.sigil.jacy"
-					},
-					"2": {
-						"name": "storage.modifier.lifetime.jacy"
-					},
-					"3": {
-						"name": "entity.name.lifetime.jacy"
-					}
+			"end": ">",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.operator.generic_params.end.jacy"
 				}
 			},
-			"literals": {
-				"patterns": [
-					{
-						"include": "#bool_lit"
-					},
-					{
-						"include": "#int_lit"
-					},
-					{
-						"include": "#float_lit"
-					},
-					{
-						"include": "#char_lit"
-					},
-					{
-						"include": "#string_lit"
-					}
-				]
-			},
-			"bool_lit": {
-				"name": "constant.language.boolean.jacy",
-				"match": "\\b(true|false)\\b"
-			},
-			"int_lit": {
-				"patterns": [
-					{
-						"comment": "Dec int literal",
-						"name": "constant.numeric.integer.dec.jacy",
-						"match": "\\b([0-9][0-9_]*)(?:([ui](?:8|16|32|64|128|size))|(i|u|))?\\b",
-						"captures": {
-							"3": {
-								"name": "invalid.illegal.jacy"
-							}
-						}
-					},
-					{
-						"comment": "Hex int literal",
-						"name": "constant.numeric.integer.hex.jacy",
-						"match": "\\b(0x[a-fA-F0-9_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
-						"captures": {
-							"3": {
-								"name": "invalid.illegal.jacy"
-							}
-						}
-					},
-					{
-						"comment": "Octo int literal",
-						"name": "constant.numeric.integer.oct.jacy",
-						"match": "\\b(0o[0-7_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
-						"captures": {
-							"3": {
-								"name": "invalid.illegal.jacy"
-							}
-						}
-					},
-					{
-						"comment": "Bin int literal",
-						"name": "constant.numeric.integer.bin.jacy",
-						"match": "\\b(0b[01_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
-						"captures": {
-							"3": {
-								"name": "invalid.illegal.jacy"
-							}
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "\\b\\s*(=)\\s*\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.generic_params.jacy"
 						}
 					}
-				]
-			},
-			"float_lit": {
-				"patterns": [
-					{
-						"comment": "Float literal",
-						"name": "constant.numeric.float.jacy",
-						"match": "\\b([0-9][0-9_]*\\.[0-9][0-9_]*)\\b"
-					},
-					{
-						"comment": "Float literal with type",
-						"name": "constant.numeric.float.jacy",
-						"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?)(f32|f64|f|d)\\b"
-					},
-					{
-						"comment": "Float literal with exp",
-						"name": "constant.numeric.float.jacy",
-						"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+)(f32|f64|f|d)?\\b"
+				},
+				{
+					"name": "entity.name.type.jacy",
+					"match": "[A-Z][A-Z_]*"
+				},
+				{
+					"include": "#sigils"
+				},
+				{
+					"include": "#modifiers"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#generic_params"
+				},
+				{
+					"include": "#lifetime"
+				}
+			]
+		},
+		"lifetime": {
+			"comment": "Lifetime",
+			"name": "storage.modifier.lifetime.jacy",
+			"match": "'([\\p{Alpha}_][\\w]*)\\b",
+			"captures": {
+				"1": {
+					"name": "entity.name.lifetime.jacy"
+				}
+			}
+		},
+		"ref_lifetime": {
+			"comment": "Reference lifetime (`&'a expr`)",
+			"match": "(&)('([\\p{Alpha}_][\\w]()))\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.operator.sigil.jacy"
+				},
+				"2": {
+					"name": "storage.modifier.lifetime.jacy"
+				},
+				"3": {
+					"name": "entity.name.lifetime.jacy"
+				}
+			}
+		},
+		"literals": {
+			"patterns": [
+				{
+					"include": "#bool_lit"
+				},
+				{
+					"include": "#int_lit"
+				},
+				{
+					"include": "#float_lit"
+				},
+				{
+					"include": "#char_lit"
+				},
+				{
+					"include": "#string_lit"
+				}
+			]
+		},
+		"bool_lit": {
+			"name": "constant.language.boolean.jacy",
+			"match": "\\b(true|false)\\b"
+		},
+		"int_lit": {
+			"patterns": [
+				{
+					"comment": "Dec int literal",
+					"name": "constant.numeric.integer.dec.jacy",
+					"match": "\\b([0-9][0-9_]*)(?:([ui](?:8|16|32|64|128|size))|(i|u|))?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jacy"
+						}
 					}
-				]
-			},
-			"string_lit": {
-				"patterns": [
-					{
-						"comment": "String literal",
-						"name": "string.quoted.double.jacy",
-						"begin": "\"",
-						"beginCaptures": {
-							"0": {
-								"name": "punctuation.definition.string.begin.jacy"
-							}
-						},
-						"end": "\""
+				},
+				{
+					"comment": "Hex int literal",
+					"name": "constant.numeric.integer.hex.jacy",
+					"match": "\\b(0x[a-fA-F0-9_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jacy"
+						}
 					}
-				]
-			},
-			"char_lit": {
-				"name": "string.quoted.single.jacy",
-				"match": "(b?')(?:[^'\\\\]|\\\\(?:x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))([^']*)(')",
-				"captures": {
-					"1": {
-						"name": ""
-					},
-					"2": {
-						"name": "invalid.illegal.jacy"
-					},
-					"3": {
-						"name": ""
+				},
+				{
+					"comment": "Octo int literal",
+					"name": "constant.numeric.integer.oct.jacy",
+					"match": "\\b(0o[0-7_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jacy"
+						}
+					}
+				},
+				{
+					"comment": "Bin int literal",
+					"name": "constant.numeric.integer.bin.jacy",
+					"match": "\\b(0b[01_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jacy"
+						}
 					}
 				}
-			},
-			"func": {
-				"comment": "Function definition",
-				"begin": "\\b(func)\\b",
-				"end": "(?=[\\{;=])",
-				"beginCaptures": {
-					"1": {
-						"name": "keyword.other.func.jacy"
-					}
+			]
+		},
+		"float_lit": {
+			"patterns": [
+				{
+					"comment": "Float literal",
+					"name": "constant.numeric.float.jacy",
+					"match": "\\b([0-9][0-9_]*\\.[0-9][0-9_]*)\\b"
 				},
-				"patterns": [
-					{
-						"begin": "([\\p{Alpha}_][\\w]*)",
-						"end": "(?=[\\{;=}])",
-						"beginCaptures": {
-							"1": {
-								"name": "entity.name.function.jacy"
-							}
-						},
-						"patterns": [
-							{
-								"include": "#comments"
-							},
-							{
-								"include": "#sigils"
-							},
-							{
-								"include": "#modifiers"
-							},
-							{
-								"include": "#spec_idents"
-							},
-							{
-								"include": "#types"
-							},
-							{
-								"include": "#misc_operators"
-							},
-							{
-								"include": "#generic_params"
-							},
-							{
-								"include": "#lifetime"
-							},
-							{
-								"include": "#ref_lifetime"
-							},
-							{
-								"comment": "Function parameters",
-								"match": "func",
-								"name": "keyword.other.func.jacy"
-							}
-						]
-					}
-				]
-			},
-			"type_items": {
-				"comment": "Type item",
-				"begin": "\\b(enum|struct|trait)\\b",
-				"end": "(?=[\\{\\(;])",
-				"beginCaptures": {
-					"1": {
-						"name": "storage.type.jacy"
-					}
+				{
+					"comment": "Float literal with type",
+					"name": "constant.numeric.float.jacy",
+					"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?)(f32|f64|f|d)\\b"
 				},
-				"patterns": [
-					{
-						"begin": "([\\p{Alpha}_][\\w]*)",
-						"end": "(?=[\\{;])",
-						"beginCaptures": {
-							"1": {
-								"name": "entity.name.type.jacy"
-							}
-						},
-						"patterns": [
-							{
-								"include": "#sigils"
-							},
-							{
-								"include": "#modifiers"
-							},
-							{
-								"include": "#types"
-							},
-							{
-								"include": "#generic_params"
-							},
-							{
-								"include": "#misc_operators"
-							}
-						]
-					}
-				]
-			},
-			"impl": {
-				"comment": "Implementation item",
-				"begin": "\\b(impl)\\b",
-				"end": "(?=[\\{])",
-				"beginCaptures": {
-					"1": {
-						"name": "storage.type.impl.jacy"
-					}
-				},
-				"patterns": [
-					{
-						"include": "#comments"
+				{
+					"comment": "Float literal with exp",
+					"name": "constant.numeric.float.jacy",
+					"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+)(f32|f64|f|d)?\\b"
+				}
+			]
+		},
+		"string_lit": {
+			"patterns": [
+				{
+					"comment": "String literal",
+					"name": "string.quoted.double.jacy",
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.jacy"
+						}
 					},
-					{
-						"include": "#generic_params"
+					"end": "\""
+				}
+			]
+		},
+		"char_lit": {
+			"name": "string.quoted.single.jacy",
+			"match": "(b?')(?:[^'\\\\]|\\\\(?:x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))([^']*)(')",
+			"captures": {
+				"1": {
+					"name": ""
+				},
+				"2": {
+					"name": "invalid.illegal.jacy"
+				},
+				"3": {
+					"name": ""
+				}
+			}
+		},
+		"func": {
+			"comment": "Function definition",
+			"begin": "\\b(func)\\b",
+			"end": "(?=[\\{;=])",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.func.jacy"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "([\\p{Alpha}_][\\w]*)",
+					"end": "(?=[\\{;=}])",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.jacy"
+						}
 					},
-					{
-						"comment": "Super traits",
-						"begin": "([\\p{Alpha}_][\\w]*)|(?=\\s*for)",
-						"end": "(?=[\\{])",
-						"beginCaptures": {
-							"1": {
-								"name": "entity.name.type.jacy"
-							}
+					"patterns": [
+						{
+							"include": "#comments"
 						},
-						"patterns": [
-							{
-								"include": "#comments"
+						{
+							"include": "#sigils"
+						},
+						{
+							"include": "#modifiers"
+						},
+						{
+							"include": "#spec_idents"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#misc_operators"
+						},
+						{
+							"include": "#generic_params"
+						},
+						{
+							"include": "#lifetime"
+						},
+						{
+							"include": "#ref_lifetime"
+						},
+						{
+							"comment": "Function parameters",
+							"match": "func",
+							"name": "keyword.other.func.jacy"
+						}
+					]
+				}
+			]
+		},
+		"type_items": {
+			"comment": "Type item",
+			"begin": "\\b(enum|struct|trait)\\b",
+			"end": "(?=[\\{\\(;])",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.jacy"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "([\\p{Alpha}_][\\w]*)",
+					"end": "(?=[\\{;])",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.type.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#sigils"
+						},
+						{
+							"include": "#modifiers"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#generic_params"
+						},
+						{
+							"include": "#misc_operators"
+						}
+					]
+				}
+			]
+		},
+		"impl": {
+			"comment": "Implementation item",
+			"begin": "\\b(impl)\\b",
+			"end": "(?=[\\{])",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.impl.jacy"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#generic_params"
+				},
+				{
+					"comment": "Super traits",
+					"begin": "([\\p{Alpha}_][\\w]*)|(?=\\s*for)",
+					"end": "(?=[\\{])",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.type.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#lifetime"
+						},
+						{
+							"include": "#generic_params"
+						},
+						{
+							"begin": "\\b(for)\\b",
+							"end": "(?<=\\w)(?<!\\sfor)",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.other.for.jacy"
+								}
 							},
-							{
-								"include": "#types"
-							},
-							{
-								"include": "#lifetime"
-							},
-							{
-								"include": "#generic_params"
-							},
-							{
-								"begin": "\\b(for)\\b",
-								"end": "(?<=\\w)(?<!\\sfor)",
-								"beginCaptures": {
-									"1": {
-										"name": "keyword.other.for.jacy"
-									}
+							"patterns": [
+								{
+									"include": "#comments"
 								},
-								"patterns": [
-									{
-										"include": "#comments"
-									},
-									{
-										"include": "#types"
-									},
-									{
-										"match": "[\\p{Alpha}_][\\w]*",
-										"name": "entity.name.type.jacy"
-									}
-								]
-							}
-						]
-					}
-				]
-			},
-			"type_alias": {
-				"comment": "Type alias",
-				"begin": "\\b(type)\\b",
-				"end": "(?=;)",
-				"beginCaptures": {
-					"1": {
-						"name": "storage.type.jacy"
-					},
-					"2": {
-						"name": "entity.name.type.jacy"
-					}
+								{
+									"include": "#types"
+								},
+								{
+									"match": "[\\p{Alpha}_][\\w]*",
+									"name": "entity.name.type.jacy"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"type_alias": {
+			"comment": "Type alias",
+			"begin": "\\b(type)\\b",
+			"end": "(?=;)",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.jacy"
 				},
-				"patterns": [
-					{
-						"begin": "([\\p{Alpha}_][\\w]*)",
-						"end": "(?=;)",
-						"beginCaptures": {
-							"1": {
-								"name": "entity.name.type.jacy"
-							}
+				"2": {
+					"name": "entity.name.type.jacy"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "([\\p{Alpha}_][\\w]*)",
+					"end": "(?=;)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.type.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comments"
 						},
-						"patterns": [
-							{
-								"include": "#comments"
-							},
-							{
-								"include": "#modifiers"
-							},
-							{
-								"include": "#operators"
-							},
-							{
-								"include": "#punctuation"
-							},
-							{
-								"include": "#types"
-							},
-							{
-								"include": "#sigils"
-							},
-							{
-								"include": "#generic_params"
-							},
-							{
-								"include": "#lifetime"
-							}
-						]
-					}
-				]
-			},
-			"expressions": {
-				"patterns": [
-					{
-						"include": "func_call"
-					}
-				]
-			},
-			"func_call": {
-				"comment": "Function call",
-				"match": "\\b([\\p{Alpha}_][\\w]*)\\s*(?=\\()",
-				"captures": {
-					"1": {
-						"name": "entity.name.function.jacy"
-					}
+						{
+							"include": "#modifiers"
+						},
+						{
+							"include": "#operators"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#sigils"
+						},
+						{
+							"include": "#generic_params"
+						},
+						{
+							"include": "#lifetime"
+						}
+					]
+				}
+			]
+		},
+		"expressions": {
+			"patterns": [
+				{
+					"include": "func_call"
+				}
+			]
+		},
+		"func_call": {
+			"comment": "Function call",
+			"match": "\\b([\\p{Alpha}_][\\w]*)\\s*(?=\\()",
+			"captures": {
+				"1": {
+					"name": "entity.name.function.jacy"
 				}
 			}
 		}
 	}
+}
 	

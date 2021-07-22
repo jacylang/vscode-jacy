@@ -1,0 +1,111 @@
+{
+	"name": "jon",
+	"scopeName": "source.jon",
+	"fileTypes": [
+		"jon"
+	],
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#keywords"
+		},
+        {
+            "include": "#key_value"
+        }
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"include": "#line_comment"
+				},
+				{
+					"include": "#block_comment"
+				}
+			]
+		},
+		"line_comment": {
+			"name": "comment.line.jon",
+			"begin": "//",
+			"beginCaptures": {
+				"0": {
+					"name": "comment.line.begin.jon"
+				}
+			},
+			"end": "$",
+			"endCaptures": {
+				"0": {
+					"name": "comment.line.end.jon"
+				}
+			}
+		},
+		"block_comment": {
+			"name": "comment.block.jon",
+			"begin": "/\\*",
+			"beginCaptures": {
+				"0": {
+					"name": "comment.block.begin.jon"
+				}
+			},
+			"end": "\\*/",
+			"endCaptures": {
+				"0": {
+					"name": "comment.block.end.jon"
+				}
+			}
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "Keywords",
+					"name": "keyword.constant.jon",
+					"match": "\\b(true|false|null)\\b"
+				}
+			]
+		},
+        "string": {
+            "patterns": [
+                {
+					"comment": "String literal",
+					"name": "string.quoted.double.jon",
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.jon"
+						}
+					},
+					"end": "\""
+                },
+                {
+					"comment": "String literal",
+					"name": "string.quoted.single.jon",
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.jon"
+						}
+					},
+					"end": "'"
+                }
+            ]
+        },
+        "key_value": {
+            "comment": "Key value pair",
+            "patterns": [
+                {
+                    "match": "\\w+",
+                    "name": "variable.parameter.jon"
+                },
+                {
+                    "match": ":",
+                    "name": "punctuation.colon.jon"
+                },
+                {"include": "#string"},
+                {"include": "#value"}
+            ]
+        }
+    }
+}
+	
