@@ -51,6 +51,9 @@
                     ".jon"
                 ],
                 "configuration": "./jon-language-configuration.json"
+            },
+            {
+                "id": "jon-injection"
             }
         ],
         "grammars": [
@@ -60,19 +63,30 @@
                 "path": "./syntaxes/jacy.tmLanguage.json"
             },
             {
-                "language": "jon",
-                "scopeName": "source.jon",
-                "path": "./syntaxes/jon.tmLanguage.json"
-            },
-            {
                 "language": "jacy-injection",
                 "scopeName": "markdown.jacy.codeblock",
-                "path": "./syntaxes/codeblock.json",
+                "path": "./syntaxes/jacy.codeblock.json",
                 "injectTo": [
                     "text.html.markdown"
                 ],
                 "embeddedLanguages": {
                     "meta.embedded.block.jacy": "jacy"
+                }
+            },
+            {
+                "language": "jon",
+                "scopeName": "source.jon",
+                "path": "./syntaxes/jon.tmLanguage.json"
+            },
+            {
+                "language": "jon-injection",
+                "scopeName": "markdown.jon.codeblock",
+                "path": "./syntaxes/jon.codeblock.json",
+                "injectTo": [
+                    "text.html.markdown"
+                ],
+                "embeddedLanguages": {
+                    "meta.embedded.block.jon": "jon"
                 }
             }
         ],
