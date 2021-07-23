@@ -1,0 +1,16 @@
+{
+    ".source.jon": {
+        "true": {
+            "prefix": "true",
+            "body": "true"
+        },
+        "false": {
+            "prefix": "false",
+            "body": "false"
+        },
+        "null": {
+            "prefix": "null",
+            "body": "null"
+        }
+    }
+}

@@ -22,7 +22,8 @@
     ],
     "main": "./out/extension.js",
     "activationEvents": [
-        "onLanguage:jacy"
+        "onLanguage:jacy",
+        "onLanguage:jon"
     ],
     "contributes": {
         "languages": [
@@ -79,6 +80,10 @@
             {
                 "language": "jacy",
                 "path": "snippets/common.json"
+            },
+            {
+                "language": "jon",
+                "path": "snippets/jon.json"
             }
         ],
         "configuration": {
