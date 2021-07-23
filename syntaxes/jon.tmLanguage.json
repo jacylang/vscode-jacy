@@ -5,12 +5,6 @@
 		"jon"
 	],
 	"patterns": [
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#keywords"
-		},
         {
             "include": "#key_value"
         }
@@ -56,56 +50,218 @@
 				}
 			}
 		},
-		"keywords": {
-			"patterns": [
-				{
-					"comment": "Keywords",
-					"name": "keyword.constant.jon",
-					"match": "\\b(true|false|null)\\b"
-				}
-			]
-		},
         "string": {
             "patterns": [
                 {
-					"comment": "String literal",
-					"name": "string.quoted.double.jon",
-					"begin": "\"",
+					"comment": "Multi-line string literal",
+					"name": "string.quoted.triple.jon",
+					"begin": "('''|\"\"\")",
 					"beginCaptures": {
-						"0": {
+						"1": {
 							"name": "punctuation.definition.string.begin.jon"
 						}
 					},
-					"end": "\""
+					"end": "(\\1)",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.end.jon"
+						}
+					}
                 },
                 {
-					"comment": "String literal",
-					"name": "string.quoted.single.jon",
-					"begin": "'",
-					"beginCaptures": {
-						"0": {
+					"comment": "Double-quoted string literal",
+					"name": "string.quoted.double.jon",
+					"match": "(\")(([^\"\\\\\\n]|\\\\[\"\\\\bfnrt/]|\\\\u[0-9a-fA-F]{4})*)(\")",
+					"captures": {
+						"1": {
 							"name": "punctuation.definition.string.begin.jon"
+						},
+						"3": {
+							"name": "punctuation.definition.string.end.jon"
 						}
-					},
-					"end": "'"
+					}
+                },
+                {
+					"comment": "Single-quoted string literal",
+					"name": "string.quoted.double.jon",
+					"match": "(')(([^'\\\\\\n]|\\\\['\\\\bfnrt/]|\\\\u[0-9a-fA-F]{4})*)(')",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.string.begin.jon"
+						},
+						"3": {
+							"name": "punctuation.definition.string.end.jon"
+						}
+					}
                 }
             ]
         },
         "key_value": {
-            "comment": "Key value pair",
-            "patterns": [
-                {
-                    "match": "\\w+",
-                    "name": "variable.parameter.jon"
-                },
-                {
-                    "match": ":",
-                    "name": "punctuation.colon.jon"
-                },
-                {"include": "#string"},
-                {"include": "#value"}
-            ]
-        }
+			"patterns": [
+				{"include": "#key"},
+				{"include": "#comments"},
+				{
+					"name": "meta.structure.dictionary.value.jon",
+					"begin": ":",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.jon"
+						}
+					},
+					"end": "(,)|(?=\\])|\\n",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.separator.jon"
+						}
+					},
+					"patterns": [
+						{"include": "#value"}
+					]
+				}
+			]
+        },
+		"key": {
+			"end": "(?=\\:)",
+			"patterns": [
+				{
+					"contentName": "entity.name.jon",
+					"patterns": [
+						{"include": "#string"}
+					]
+				},
+				{
+					"name": "entity.name.jon",
+					"match": "[^\\s\\u00a0\\u2007\\u202f\\ufeff$\"{}\\[\\]:=,+#`^?!@*&]+"
+				}
+			]
+		},
+		"value": {
+			"patterns": [
+				{"include": "#constant"},
+				{"include": "#string"},
+				{"include": "#float"},
+				{"include": "#integer"},
+				{"include": "#object"},
+				{"include": "#array"},
+				{
+					"match": "(\\w+)?!('|\")",
+					"name": "invalid.illegal.unexpected-identifier.jon"
+				}
+			]
+		},
+		"constant": {
+			"comment": "Keyword constants",
+			"name": "keyword.other.jon",
+			"match": "\\b(?:true|false|null)\\b"
+		},
+		"object": {
+			"comment": "Object",
+			"begin": "\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.begin.jon"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.end.jon"
+				}
+			},
+			"patterns": [
+				{"include": "#key_value"}
+			]
+		},
+		"array": {
+			"comment": "Array",
+			"name": "meta.structure.array.value.jon",
+			"begin": "\\[",
+			"end": "\\]",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.begin.jon"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.end.jon"
+				}
+			},
+			"patterns": [
+				{"include": "#value"},
+				{
+					"match": "(,)|(?=\\])|\\n",
+					"name": "punctuation.separator.jon"
+				},
+				{
+					"match": "[^\\s\\]]",
+					"name": "invalid.illegal.expected-array-separator.jon"
+				}
+			]
+		},
+		"float": {
+			"patterns": [
+				{
+					"comment": "Floating-point number",
+					"name": "constant.numeric.float.jon",
+					"match": "\\b([0-9][0-9_]*\\.[0-9][0-9_]*)\\b"
+				},
+				{
+					"comment": "Float literal with type",
+					"name": "constant.numeric.float.jon",
+					"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?)\\b"
+				},
+				{
+					"comment": "Float literal with exp",
+					"name": "constant.numeric.float.jon",
+					"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+)?\\b"
+				}
+			]
+		},
+		"integer": {
+			"patterns": [
+				{
+					"comment": "Decimal integer",
+					"name": "constant.numeric.integer.dec.jon",
+					"match": "\\b([0-9][0-9_]*)?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jon"
+						}
+					}
+				},
+				{
+					"comment": "Hex int literal",
+					"name": "constant.numeric.integer.hex.jon",
+					"match": "\\b(0x[a-fA-F0-9_]+)?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jon"
+						}
+					}
+				},
+				{
+					"comment": "Octo int literal",
+					"name": "constant.numeric.integer.oct.jon",
+					"match": "\\b(0o[0-7_]+)?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jon"
+						}
+					}
+				},
+				{
+					"comment": "Bin int literal",
+					"name": "constant.numeric.integer.bin.jon",
+					"match": "\\b(0b[01_]+)?\\b",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.jon"
+						}
+					}
+				}
+			]
+		}
     }
 }
 	

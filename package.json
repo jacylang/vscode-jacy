@@ -48,7 +48,8 @@
                 ],
                 "extensions": [
                     ".jon"
-                ]
+                ],
+                "configuration": "./jon-language-configuration.json"
             }
         ],
         "grammars": [
