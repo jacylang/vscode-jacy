@@ -142,8 +142,8 @@
 			"patterns": [
 				{"include": "#constant"},
 				{"include": "#string"},
-				{"include": "#float"},
 				{"include": "#integer"},
+				{"include": "#float"},
 				{"include": "#object"},
 				{"include": "#array"},
 				{
@@ -224,44 +224,24 @@
 		"integer": {
 			"patterns": [
 				{
-					"comment": "Decimal integer",
-					"name": "constant.numeric.integer.dec.jon",
-					"match": "\\b([0-9][0-9_]*)?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jon"
-						}
-					}
-				},
-				{
 					"comment": "Hex int literal",
-					"name": "constant.numeric.integer.hex.jon",
-					"match": "\\b(0x[a-fA-F0-9_]+)?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jon"
-						}
-					}
+					"name": "constant.numeric.hex.jon",
+					"match": "\\b0[xX][a-fA-F0-9_]+\\b"
 				},
 				{
 					"comment": "Octo int literal",
-					"name": "constant.numeric.integer.oct.jon",
-					"match": "\\b(0o[0-7_]+)?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jon"
-						}
-					}
+					"name": "constant.numeric.oct.jon",
+					"match": "\\b0[oO][0-7_]+\\b"
 				},
 				{
 					"comment": "Bin int literal",
-					"name": "constant.numeric.integer.bin.jon",
-					"match": "\\b(0b[01_]+)?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jon"
-						}
-					}
+					"name": "constant.numeric.bin.jon",
+					"match": "\\b0[bB][01_]+\\b"
+				},
+				{
+					"comment": "Decimal integer",
+					"name": "constant.numeric.dec.jon",
+					"match": "\\b[0-9][0-9_]*\\b"
 				}
 			]
 		}
