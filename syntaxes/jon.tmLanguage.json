@@ -6,6 +6,9 @@
 	],
 	"patterns": [
         {
+            "include": "#comments"
+        },
+        {
             "include": "#key_value"
         },
 		{
