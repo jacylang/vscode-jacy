@@ -155,7 +155,7 @@
 				{
 					"comment": "Keywords",
 					"name": "keyword.other.jacy",
-					"match": "\\b(party|mod|let|ref|use|super|as|move)\\b"
+					"match": "\\b(party|mod|let|ref|use|super|as|move|init)\\b"
 				},
 				{
 					"comment": "Reserved keywords",
