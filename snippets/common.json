@@ -80,6 +80,15 @@
             ],
             "description": "func"
         },
+        "initializer": {
+            "prefix": "init",
+            "body": [
+                "init() {",
+                "\t$0",
+                "}"
+            ],
+            "description": "func"
+        },
         "lambda expression": {
             "prefix": "\\_",
             "body": [
