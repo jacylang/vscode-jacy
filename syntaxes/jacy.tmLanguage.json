@@ -291,7 +291,7 @@
 				{
 					"comment": "Built-in types",
 					"name": "storage.type.core.jacy",
-					"match": "\\b(bool|char|[ui](?:8|16|32|64|128)|f(?:16|32|64|128)|usize|isize|str|String|Self|Option|Result)\\b"
+					"match": "\\b(bool|char|[ui](?:8|16|32|64|128)|f(?:16|32|64|128)|int|uint|str|String|Self|Option|Result)\\b"
 				}
 			]
 		},
@@ -695,14 +695,78 @@
 				{
 					"include": "func_call"
 				}
-			]
-		},
-		"func_call": {
-			"comment": "Function call",
-			"match": "\\b([\\p{Alpha}_][\\w]*)\\s*(?=\\()",
-			"captures": {
-				"1": {
-					"name": "entity.name.function.jacy"
+			],
+			"repository": {
+				"named_list": {
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(:)",
+							"beginCaptures": {
+								"1": {
+									"name": "support.function.any-method.jacy"
+								},
+								"2": {
+									"name": "punctuation.definition.identifier.jacy"
+								},
+								"3": {
+									"name": "punctuation.definition.identifier.jacy"
+								},
+								"4": {
+									"name": "punctuation.separator.argument-label.jacy"
+								}
+							},
+							"comment": "an element with a label",
+							"end": "(?=[,)\\]])",
+							"patterns": [
+								{
+									"include": "#expressions"
+								}
+							]
+						},
+						{
+							"begin": "(?![,)\\]])(?=\\S)",
+							"comment": "an element without a label (i.e. anything else)",
+							"end": "(?=[,)\\]])",
+							"patterns": [
+								{
+									"include": "#expressions"
+								}
+							]
+						}
+					]
+				},
+				"func_call": {
+					"comment": "Function call",
+					"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "support.function.any-method.jacy"
+						},
+						"2": {
+							"name": "punctuation.definition.identifier.jacy"
+						},
+						"3": {
+							"name": "punctuation.definition.identifier.jacy"
+						},
+						"4": {
+							"name": "punctuation.definition.arguments.begin.jacy"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.arguments.end.jacy"
+						}
+					},
+					"name": "meta.function-call.jacy",
+					"patterns": [
+						{
+							"include": "#named-list"
+						}
+					]
 				}
 			}
 		}
