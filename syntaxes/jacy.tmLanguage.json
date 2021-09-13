@@ -27,9 +27,6 @@
 			"include": "#modifiers"
 		},
 		{
-			"include": "#literals"
-		},
-		{
 			"include": "#lifetime"
 		},
 		{
@@ -368,122 +365,6 @@
 				}
 			}
 		},
-		"literals": {
-			"patterns": [
-				{
-					"include": "#bool_lit"
-				},
-				{
-					"include": "#int_lit"
-				},
-				{
-					"include": "#float_lit"
-				},
-				{
-					"include": "#char_lit"
-				},
-				{
-					"include": "#string_lit"
-				}
-			]
-		},
-		"bool_lit": {
-			"name": "constant.language.boolean.jacy",
-			"match": "\\b(true|false)\\b"
-		},
-		"int_lit": {
-			"patterns": [
-				{
-					"comment": "Dec int literal",
-					"name": "constant.numeric.integer.dec.jacy",
-					"match": "\\b([0-9][0-9_]*)(?:([ui](?:8|16|32|64|128|size))|(i|u|))?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jacy"
-						}
-					}
-				},
-				{
-					"comment": "Hex int literal",
-					"name": "constant.numeric.integer.hex.jacy",
-					"match": "\\b(0x[a-fA-F0-9_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jacy"
-						}
-					}
-				},
-				{
-					"comment": "Octo int literal",
-					"name": "constant.numeric.integer.oct.jacy",
-					"match": "\\b(0o[0-7_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jacy"
-						}
-					}
-				},
-				{
-					"comment": "Bin int literal",
-					"name": "constant.numeric.integer.bin.jacy",
-					"match": "\\b(0b[01_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
-					"captures": {
-						"3": {
-							"name": "invalid.illegal.jacy"
-						}
-					}
-				}
-			]
-		},
-		"float_lit": {
-			"patterns": [
-				{
-					"comment": "Float literal",
-					"name": "constant.numeric.float.jacy",
-					"match": "\\b([0-9][0-9_]*\\.[0-9][0-9_]*)\\b"
-				},
-				{
-					"comment": "Float literal with type",
-					"name": "constant.numeric.float.jacy",
-					"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?)(f32|f64|f|d)\\b"
-				},
-				{
-					"comment": "Float literal with exp",
-					"name": "constant.numeric.float.jacy",
-					"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+)(f32|f64|f|d)?\\b"
-				}
-			]
-		},
-		"string_lit": {
-			"patterns": [
-				{
-					"comment": "String literal",
-					"name": "string.quoted.double.jacy",
-					"begin": "\"",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.string.begin.jacy"
-						}
-					},
-					"end": "\""
-				}
-			]
-		},
-		"char_lit": {
-			"name": "string.quoted.single.jacy",
-			"match": "(b?')(?:[^'\\\\]|\\\\(?:x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))([^']*)(')",
-			"captures": {
-				"1": {
-					"name": ""
-				},
-				"2": {
-					"name": "invalid.illegal.jacy"
-				},
-				"3": {
-					"name": ""
-				}
-			}
-		},
 		"func": {
 			"comment": "Function definition",
 			"begin": "\\b(func)\\b",
@@ -693,10 +574,129 @@
 		"expressions": {
 			"patterns": [
 				{
-					"include": "func_call"
+					"include": "#func_call"
+				},
+				{
+					"include": "#literals"
 				}
 			],
 			"repository": {
+				"literals": {
+					"patterns": [
+						{
+							"include": "#bool_lit"
+						},
+						{
+							"include": "#int_lit"
+						},
+						{
+							"include": "#float_lit"
+						},
+						{
+							"include": "#char_lit"
+						},
+						{
+							"include": "#string_lit"
+						}
+					]
+				},
+				"bool_lit": {
+					"name": "constant.language.boolean.jacy",
+					"match": "\\b(true|false)\\b"
+				},
+				"int_lit": {
+					"patterns": [
+						{
+							"comment": "Dec int literal",
+							"name": "constant.numeric.integer.dec.jacy",
+							"match": "\\b([0-9][0-9_]*)(?:([ui](?:8|16|32|64|128|size))|(i|u|))?\\b",
+							"captures": {
+								"3": {
+									"name": "invalid.illegal.jacy"
+								}
+							}
+						},
+						{
+							"comment": "Hex int literal",
+							"name": "constant.numeric.integer.hex.jacy",
+							"match": "\\b(0x[a-fA-F0-9_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+							"captures": {
+								"3": {
+									"name": "invalid.illegal.jacy"
+								}
+							}
+						},
+						{
+							"comment": "Octo int literal",
+							"name": "constant.numeric.integer.oct.jacy",
+							"match": "\\b(0o[0-7_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+							"captures": {
+								"3": {
+									"name": "invalid.illegal.jacy"
+								}
+							}
+						},
+						{
+							"comment": "Bin int literal",
+							"name": "constant.numeric.integer.bin.jacy",
+							"match": "\\b(0b[01_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+							"captures": {
+								"3": {
+									"name": "invalid.illegal.jacy"
+								}
+							}
+						}
+					]
+				},
+				"float_lit": {
+					"patterns": [
+						{
+							"comment": "Float literal",
+							"name": "constant.numeric.float.jacy",
+							"match": "\\b([0-9][0-9_]*\\.[0-9][0-9_]*)\\b"
+						},
+						{
+							"comment": "Float literal with type",
+							"name": "constant.numeric.float.jacy",
+							"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?)(f32|f64|f|d)\\b"
+						},
+						{
+							"comment": "Float literal with exp",
+							"name": "constant.numeric.float.jacy",
+							"match": "\\b([0-9][0-9_]*(?:\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+)(f32|f64|f|d)?\\b"
+						}
+					]
+				},
+				"string_lit": {
+					"patterns": [
+						{
+							"comment": "String literal",
+							"name": "string.quoted.double.jacy",
+							"begin": "\"",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.string.begin.jacy"
+								}
+							},
+							"end": "\""
+						}
+					]
+				},
+				"char_lit": {
+					"name": "string.quoted.single.jacy",
+					"match": "(b?')(?:[^'\\\\]|\\\\(?:x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))([^']*)(')",
+					"captures": {
+						"1": {
+							"name": ""
+						},
+						"2": {
+							"name": "invalid.illegal.jacy"
+						},
+						"3": {
+							"name": ""
+						}
+					}
+				},
 				"named_list": {
 					"patterns": [
 						{
