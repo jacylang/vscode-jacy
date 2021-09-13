@@ -412,6 +412,9 @@
 							"include": "#ref_lifetime"
 						},
 						{
+							"include": "#expressions"
+						},
+						{
 							"comment": "Function parameters",
 							"match": "func",
 							"name": "keyword.other.func.jacy"
@@ -743,15 +746,9 @@
 					"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(\\()",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.name.function.jacy"
+							"name": "entity.name.function.call.jacy"
 						},
 						"2": {
-							"name": "punctuation.definition.identifier.jacy"
-						},
-						"3": {
-							"name": "punctuation.definition.identifier.jacy"
-						},
-						"4": {
 							"name": "punctuation.definition.arguments.begin.jacy"
 						}
 					},
@@ -764,7 +761,7 @@
 					"name": "meta.function-call.jacy",
 					"patterns": [
 						{
-							"include": "#named-list"
+							"include": "#named_list"
 						}
 					]
 				}
