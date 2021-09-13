@@ -743,7 +743,7 @@
 					"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(\\()",
 					"beginCaptures": {
 						"1": {
-							"name": "support.function.any-method.jacy"
+							"name": "entity.name.function.jacy"
 						},
 						"2": {
 							"name": "punctuation.definition.identifier.jacy"
