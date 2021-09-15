@@ -284,6 +284,10 @@
 				},
 				{
 					"include": "#comments"
+				},
+				{
+					"name": "entity.name.type.jacy",
+					"match": "[A-Z][A-Za-z_]*"
 				}
 			],
 			"repository": {
