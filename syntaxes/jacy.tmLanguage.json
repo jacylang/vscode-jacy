@@ -612,7 +612,7 @@
 								{
 									"comment": "Dec int literal",
 									"name": "constant.numeric.integer.dec.jacy",
-									"match": "\\b([0-9][0-9_]*)(?:([ui](?:8|16|32|64|128)))?\\b",
+									"match": "\\b([0-9][0-9_]*)(?:([ui](?:8|16|32|64|128)|i|u))?\\b",
 									"captures": {
 										"3": {
 											"name": "invalid.illegal.jacy"
@@ -622,7 +622,7 @@
 								{
 									"comment": "Hex int literal",
 									"name": "constant.numeric.integer.hex.jacy",
-									"match": "\\b(0x[a-fA-F0-9_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+									"match": "\\b(0x[a-fA-F0-9_]+)(?:([ui](?:8|16|32|64|128)|i|u))?\\b",
 									"captures": {
 										"3": {
 											"name": "invalid.illegal.jacy"
@@ -632,7 +632,7 @@
 								{
 									"comment": "Octo int literal",
 									"name": "constant.numeric.integer.oct.jacy",
-									"match": "\\b(0o[0-7_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+									"match": "\\b(0o[0-7_]+)(?:([ui](?:8|16|32|64|128)|i|u))?\\b",
 									"captures": {
 										"3": {
 											"name": "invalid.illegal.jacy"
@@ -642,7 +642,7 @@
 								{
 									"comment": "Bin int literal",
 									"name": "constant.numeric.integer.bin.jacy",
-									"match": "\\b(0b[01_]+)(?:([ui](?:8|16|32|64|128|size))|(i|u))?\\b",
+									"match": "\\b(0b[01_]+)(?:([ui](?:8|16|32|64|128)|i|u))?\\b",
 									"captures": {
 										"3": {
 											"name": "invalid.illegal.jacy"
