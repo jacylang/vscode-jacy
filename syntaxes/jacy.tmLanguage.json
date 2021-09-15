@@ -6,6 +6,10 @@
 	],
 	"patterns": [
 		{
+			"name": "punctuation.terminator.jacy",
+			"match": "(;)"
+		},
+		{
 			"include": "#comments"
 		},
 		{
@@ -277,6 +281,10 @@
 		"types": {
 			"patterns": [
 				{
+					"match": "(&)",
+					"name": "keyword.operator.ref.jacy"
+				},
+				{
 					"include": "#builtin_types"
 				},
 				{
@@ -383,6 +391,9 @@
 			"patterns": [
 				{
 					"include": "#func"
+				},
+				{
+					"include": "#init"
 				},
 				{
 					"include": "#type_items"
@@ -516,11 +527,14 @@
 		"init": {
 			"comment": "Initializer definition",
 			"name": "meta.definition.init.jacy",
-			"begin": "\\b(init)\\b",
+			"begin": "\\b(init)([?!])?",
 			"end": "(?<=})|$",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.init.jacy"
+				},
+				"2": {
+					"name": "keyword.punctuation.jacy"
 				}
 			},
 			"patterns": [
@@ -658,6 +672,10 @@
 						}
 					},
 					"patterns": [
+						{
+							"match": "(=)",
+							"name": "keyword.operator.assign.jacy"
+						},
 						{
 							"include": "#types"
 						}
