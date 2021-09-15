@@ -36,16 +36,7 @@
 			"include": "#types"
 		},
 		{
-			"include": "#func"
-		},
-		{
-			"include": "#type_items"
-		},
-		{
-			"include": "#type_alias"
-		},
-		{
-			"include": "#impl"
+			"include": "#items"
 		},
 		{
 			"include": "#expressions"
@@ -290,6 +281,9 @@
 				},
 				{
 					"include": "#optional"
+				},
+				{
+					"include": "#comments"
 				}
 			],
 			"repository": {
@@ -378,10 +372,27 @@
 				}
 			}
 		},
+		"items": {
+			"patterns": [
+				{
+					"include": "#func"
+				},
+				{
+					"include": "#type_items"
+				},
+				{
+					"include": "#type_alias"
+				},
+				{
+					"include": "#impl"
+				}
+			]
+		},
 		"func": {
 			"comment": "Function definition",
+			"name": "meta.definition.function.jacy",
 			"begin": "\\b(func)\\b",
-			"end": "(?=[\\{;=])",
+			"end": "(?<=})|$",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.func.jacy"
@@ -392,45 +403,94 @@
 					"include": "#generic_params"
 				},
 				{
-					"begin": "([\\p{Alpha}_][\\w]*)",
-					"end": "(?=[\\{;=}])",
+					"match": "([\\p{Alpha}_][\\w]*)",
+					"name": "entity.name.function.jacy"
+				},
+				{
+					"name": "meta.definition.params.jacy",
+					"begin": "(\\()",
+					"end": "(\\))",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.name.function.jacy"
+							"name": "punctuation.definition.params.begin.jacy"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.params.end.jacy"
 						}
 					},
 					"patterns": [
 						{
-							"include": "#comments"
+							"end": "(?=[:])",
+							"patterns": [
+								{
+									"include": "#patterns"
+								}
+							]
 						},
 						{
-							"include": "#sigils"
-						},
-						{
-							"include": "#modifiers"
-						},
-						{
-							"include": "#spec_idents"
-						},
+							"begin": "(:)",
+							"end": "(?=[,\\)])",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.punctuation.colon.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#types"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "meta.definition.function-return-type.jacy",
+					"begin": "(:)",
+					"end": "(?=[\\{;=])",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.punctuation.colon.jacy"
+						}
+					},
+					"patterns": [
 						{
 							"include": "#types"
-						},
-						{
-							"include": "#misc_operators"
-						},
-						{
-							"include": "#lifetime"
-						},
-						{
-							"include": "#ref_lifetime"
-						},
+						}
+					]
+				},
+				{
+					"name": "meta.definition.function-return-type.jacy",
+					"begin": "(=)",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.operator.assign.jacy"
+						}
+					},
+					"end": "(?=;)",
+					"patterns": [
 						{
 							"include": "#expressions"
-						},
+						}
+					]
+				},
+				{
+					"begin": "(\\{)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.brace.begin.jacy"
+						}
+					},
+					"end": "(\\})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.brace.end.jacy"
+						}
+					},
+					"patterns": [
 						{
-							"comment": "Function parameters",
-							"match": "func",
-							"name": "keyword.other.func.jacy"
+							"include": "#statements"
 						}
 					]
 				}
@@ -560,30 +620,40 @@
 					},
 					"patterns": [
 						{
-							"include": "#comments"
-						},
-						{
-							"include": "#modifiers"
-						},
-						{
-							"include": "#operators"
-						},
-						{
-							"include": "#punctuation"
-						},
-						{
 							"include": "#types"
-						},
-						{
-							"include": "#sigils"
-						},
-						{
-							"include": "#generic_params"
-						},
-						{
-							"include": "#lifetime"
 						}
 					]
+				}
+			]
+		},
+		"patterns": {
+			
+		},
+		"statements": {
+			"patterns": [
+				{
+					"include": "#expressions"
+				},
+				{
+					"include": "#items"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#modifiers"
+				},
+				{
+					"include": "#operators"
+				},
+				{
+					"include": "#punctuation"
+				},
+				{
+					"include": "#sigils"
+				},
+				{
+					"include": "#lifetime"
 				}
 			]
 		},
@@ -594,6 +664,9 @@
 				},
 				{
 					"include": "#literals"
+				},
+				{
+					"include": "#block_expr"
 				}
 			],
 			"repository": {
@@ -714,6 +787,23 @@
 							}
 						}
 					}
+				},
+				"block_expr": {
+					"begin": "(\\{)",
+					"end": "(\\})",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.block-expr.begin.jacy"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.block-expr.end.jacy"
+						}
+					},
+					"patterns": [{
+						"include": "#statements"
+					}]
 				},
 				"named_list": {
 					"patterns": [
