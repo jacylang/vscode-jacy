@@ -296,7 +296,7 @@
 			"repository": {
 				"builtin_types": {
 					"comment": "Built-in types",
-					"name": "storage.type.core.jacy",
+					"name": "entity.name.type.core.jacy",
 					"match": "\\b(bool|char|[ui](?:8|16|32|64|128)|f(?:16|32|64|128)|int|uint|str|String|Self|Option|Result)\\b"
 				},
 				"optional": {
@@ -414,43 +414,7 @@
 					"name": "entity.name.function.jacy"
 				},
 				{
-					"name": "meta.definition.params.jacy",
-					"begin": "(\\()",
-					"end": "(\\))",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.definition.params.begin.jacy"
-						}
-					},
-					"endCaptures": {
-						"1": {
-							"name": "punctuation.definition.params.end.jacy"
-						}
-					},
-					"patterns": [
-						{
-							"end": "(?=[:])",
-							"patterns": [
-								{
-									"include": "#patterns"
-								}
-							]
-						},
-						{
-							"begin": "(:)",
-							"end": "(?=[,\\)])",
-							"beginCaptures": {
-								"1": {
-									"name": "keyword.punctuation.colon.jacy"
-								}
-							},
-							"patterns": [
-								{
-									"include": "#types"
-								}
-							]
-						}
-					]
+					"include": "#func_params"
 				},
 				{
 					"name": "meta.definition.function-return-type.jacy",
@@ -467,6 +431,52 @@
 						}
 					]
 				},
+				{
+					"include": "#func_body"
+				}
+			]
+		},
+		"func_params": {
+			"name": "meta.definition.params.jacy",
+			"begin": "(\\()",
+			"end": "(\\))",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.params.begin.jacy"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.params.end.jacy"
+				}
+			},
+			"patterns": [
+				{
+					"end": "(?=[:])",
+					"patterns": [
+						{
+							"include": "#patterns"
+						}
+					]
+				},
+				{
+					"begin": "(:)",
+					"end": "(?=[,\\)])",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.punctuation.colon.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#types"
+						}
+					]
+				}
+			]
+		},
+		"func_body": {
+			"patterns": [
 				{
 					"name": "meta.definition.function-return-type.jacy",
 					"begin": "(=)",
@@ -500,6 +510,28 @@
 							"include": "#statements"
 						}
 					]
+				}
+			]
+		},
+		"init": {
+			"comment": "Initializer definition",
+			"name": "meta.definition.init.jacy",
+			"begin": "\\b(init)\\b",
+			"end": "(?<=})|$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.init.jacy"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#generic_params"
+				},
+				{
+					"include": "#func_params"
+				},
+				{
+					"include": "#func_body"
 				}
 			]
 		},
