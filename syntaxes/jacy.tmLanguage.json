@@ -6,44 +6,7 @@
 	],
 	"patterns": [
 		{
-			"name": "punctuation.terminator.jacy",
-			"match": "(;)"
-		},
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#operators"
-		},
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#spec_idents"
-		},
-		{
-			"include": "#punctuation"
-		},
-		{
-			"include": "#sigils"
-		},
-		{
-			"include": "#modifiers"
-		},
-		{
-			"include": "#lifetime"
-		},
-		{
-			"include": "#ref_lifetime"
-		},
-		{
-			"include": "#types"
-		},
-		{
 			"include": "#items"
-		},
-		{
-			"include": "#expressions"
 		}
 	],
 	"repository": {
@@ -421,6 +384,12 @@
 					"include": "#generic_params"
 				},
 				{
+					"name": "invalid.illegal.jacy",
+					"patterns": [{
+						"include": "#keywords"
+					}]
+				},
+				{
 					"match": "([\\p{Alpha}_][\\w]*)",
 					"name": "entity.name.function.jacy"
 				},
@@ -689,6 +658,10 @@
 		"statements": {
 			"patterns": [
 				{
+					"name": "punctuation.terminator.jacy",
+					"match": "(;)"
+				},
+				{
 					"include": "#expressions"
 				},
 				{
@@ -871,7 +844,7 @@
 							"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(:)",
 							"beginCaptures": {
 								"1": {
-									"name": "support.function.any-method.jacy"
+									"name": "support.function.label.jacy"
 								},
 								"2": {
 									"name": "punctuation.definition.identifier.jacy"
@@ -880,21 +853,24 @@
 									"name": "punctuation.definition.identifier.jacy"
 								},
 								"4": {
-									"name": "punctuation.separator.argument-label.jacy"
+									"name": "punctuation.separator.label-colon.jacy"
 								}
 							},
 							"comment": "an element with a label",
-							"end": "(?=[,)\\]])",
+							"end": "(?=[,)])",
 							"patterns": [
 								{
 									"include": "#expressions"
+								},
+								{
+									"include": "#named_list"
 								}
 							]
 						},
 						{
-							"begin": "(?![,)\\]])(?=\\S)",
+							"begin": "(?![,)])(?=\\S)",
 							"comment": "an element without a label (i.e. anything else)",
-							"end": "(?=[,)\\]])",
+							"end": "(?=[,)])",
 							"patterns": [
 								{
 									"include": "#expressions"
