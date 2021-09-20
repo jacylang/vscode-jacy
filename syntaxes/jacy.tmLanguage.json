@@ -7,7 +7,8 @@
 	"patterns": [
 		{
 			"include": "#items"
-		}
+		},
+		{"include": "#path_prefix"}
 	],
 	"repository": {
 		"comments": {
@@ -100,6 +101,8 @@
 				}
 			}
 		},
+
+
 		"keywords": {
 			"patterns": [
 				{
@@ -146,7 +149,7 @@
 				{
 					"comment": "Keywords",
 					"name": "keyword.other.jacy",
-					"match": "\\b(party|mod|let|ref|use|super|as|move)\\b"
+					"match": "\\b(party|mod|let|ref|use|as|move)\\b"
 				},
 				{
 					"comment": "Reserved keywords",
@@ -214,6 +217,8 @@
 				}
 			]
 		},
+
+
 		"punctuation": {
 			"patterns": [
 				{
@@ -233,6 +238,22 @@
 				}
 			]
 		},
+
+		"path_prefix": {
+			"patterns": [
+				{
+					"comment": "self as path prefix",
+					"match": "\\b[Ss]elf\\b",
+					"name": "variable.language.self.jacy"
+				},
+				{
+					"comment": "super as path prefix",
+					"match": "\\bsuper\\b",
+					"name": "variable.language.super.jacy"
+				}
+			]
+		},
+
 		"path": {
 			"comment": "Some path",
 			"patterns": [
@@ -247,20 +268,6 @@
 							"name": "keyword.operator.namespace.jacy"
 						}
 					}
-				},
-				{
-					"patterns": [
-						{
-							"comment": "self as path prefix",
-							"match": "\\b[Ss]elf\\b",
-							"name": "variable.language.self.jacy"
-						},
-						{
-							"comment": "super as path prefix",
-							"match": "\\bsuper\\b",
-							"name": "variable.language.super.jacy"
-						}
-					]
 				}
 			]
 		},
@@ -750,7 +757,8 @@
 					"patterns": [
 						{"include": "#comments"},
 						{"include": "#keywords"},
-						{"include": "#path"}
+						{"include": "#path"},
+						{"include": "#path_prefix"}
 					]
 				},
 				"mod": {
