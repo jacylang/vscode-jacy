@@ -252,13 +252,16 @@
 			"patterns": [
 				{"include": "#comments"},
 				{
-					"match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!super|self)::)",
+					"match": "(\\p{Alpha}+)((?<!super|self)::)(\\p{Alpha}+(?!::))",
 					"captures": {
 						"1": {
 							"name": "entity.name.namespace.jacy"
 						},
 						"2": {
 							"name": "keyword.operator.namespace.jacy"
+						},
+						"3": {
+							"name": "entity.name.namespace.jacy"
 						}
 					}
 				}
