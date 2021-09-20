@@ -2,9 +2,16 @@
 
 > Changelog by releases
 
+## 20.09.2021
+
+- MVP version
+- Better function call
+- `syntaxes` structured better
+- `jon` grammar fixes
+
 ## 02.08.2021
 
-- MVP release
+- First kinda working version
 
 ## 16.07.2021
 
