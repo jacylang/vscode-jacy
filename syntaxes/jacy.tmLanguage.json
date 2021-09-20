@@ -141,10 +141,6 @@
 					"match": "\\b(mut)\\b"
 				},
 				{
-					"name": "keyword.other.rust storage.type.rust",
-					"match": "\\b(let)\\b"
-				},
-				{
 					"comment": "Reserved keywords",
 					"name": "invalid.illegal.jacy",
 					"match": "\\b(try|catch|final|pure|async|await|do|infix|where)\\b"
@@ -267,22 +263,16 @@
 				}
 			]
 		},
-		"prelude_variants": {
-			"patterns": [
-				{
-					"comment": "Enum",
-					"name": "support.constant.jacy",
-					"match": "\\b(Some|None|Ok|Err)\\b"
-				}
-			]
-		},
 		"types": {
 			"patterns": [
 				{"include": "#comments"},
+				{"include": "#keywords"},
+				{"include": "#generic_params"},
+
 				{"include": "#builtin_types"},
 				{"include": "#optional"},
-				{"include": "#generic_params"},
-				{"include": "#keywords"},
+				{"include": "#prelude_variants"},
+
 				{
 					"match": "(&)",
 					"name": "keyword.operator.ref.jacy"
@@ -302,6 +292,15 @@
 					"comment": "Optional type",
 					"name": "keyword.operator.type.option.jacy",
 					"match": "[?]"
+				},
+				"prelude_variants": {
+					"patterns": [
+						{
+							"comment": "Enum",
+							"name": "support.constant.jacy",
+							"match": "\\b(Some|None|Ok|Err)\\b"
+						}
+					]
 				}
 			}
 		},
@@ -712,7 +711,7 @@
 			"patterns": [
 				{
 					"name": "meta.ident-pattern.jacy",
-					"match": "(\\bref\\b)?(\\bmut\\b)?(\\p{Alpha}+)",
+					"match": "(ref)?\\s+(mut)?\\s+(\\p{Alpha}+)",
 					"captures": {
 						"1": {
 							"name": "invalid.illegal.jacy"
@@ -753,15 +752,20 @@
 					},
 					"patterns": [
 						{
-							"begin": "(:)",
-							"end": "(?=[;=])",
-							"patterns": [{"include": "#types"}]
+							"name": "meta.definition.variable.pattern.jacy",
+							"begin": "(?<=(\\blet\\b))",
+							"end": "(?=[:=])",
+							"patterns": [{"include": "#pats"}]
 						},
 						{
-							"end": "(?=[:=])",
-							"patterns": [
-								{"include": "#pats"}
-							]
+							"begin": "(:)",
+							"end": "(?=[;=])",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.punctuation.colon.jacy"
+								}
+							},
+							"patterns": [{"include": "#types"}]
 						},
 						{
 							"begin": "=",
