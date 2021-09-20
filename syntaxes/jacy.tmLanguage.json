@@ -307,14 +307,15 @@
 		},
 		"types": {
 			"patterns": [
+				{"include": "#comments"},
+				{"include": "#builtin_types"},
+				{"include": "#optional"},
+				{"include": "#generic_params"},
+				{"include": "#keywords"},
 				{
 					"match": "(&)",
 					"name": "keyword.operator.ref.jacy"
 				},
-				{"include": "#builtin_types"},
-				{"include": "#optional"},
-				{"include": "#generic_params"},
-				{"include": "#comments"},
 				{
 					"name": "entity.name.type.jacy",
 					"match": "[A-Z][A-Za-z_]*"
@@ -402,7 +403,8 @@
 				{"include": "#type_alias"},
 				{"include": "#impl"},
 				{"include": "#use_decl"},
-				{"include": "#mod"}
+				{"include": "#mod"},
+				{"include": "#struct"}
 			],
 			"repository": {
 				"func": {
@@ -530,9 +532,46 @@
 						{"include": "#func_body"}
 					]
 				},
+				"struct": {
+					"comment": "`struct` item",
+					"name": "meta.definition.struct.jacy",
+					"begin": "\\b(struct)\\b",
+					"end": "(?=[\\{;])",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "([\\p{Alpha}_][\\w]*)",
+							"end": "(?=[\\{;])",
+							"beginCaptures": {
+								"1": {
+									"name": "entity.name.struct.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"begin": "(:)",
+									"end": "(?=[:\\{])",
+									"beginCaptures": {
+										"1": {
+											"name": "keyword.punctuation.colon.jacy"
+										}
+									},
+									"patterns": [
+										{"include": "#types"}
+									]
+								},
+								{"include": "#items"}
+							]
+						}
+					]
+				},
 				"type_items": {
 					"comment": "Type item",
-					"begin": "\\b(enum|struct|trait)\\b",
+					"begin": "\\b(trait)\\b",
 					"end": "(?=[\\{\\(;])",
 					"beginCaptures": {
 						"1": {
@@ -611,10 +650,7 @@
 					"end": "(?=;)",
 					"beginCaptures": {
 						"1": {
-							"name": "storage.type.jacy"
-						},
-						"2": {
-							"name": "entity.name.type.jacy"
+							"name": "keyword.declaration.type.jacy storage.type.jacy"
 						}
 					},
 					"patterns": [
@@ -623,7 +659,7 @@
 							"end": "(?=;)",
 							"beginCaptures": {
 								"1": {
-									"name": "entity.name.type.jacy"
+									"name": "entity.name.type.declaration.jacy"
 								}
 							},
 							"patterns": [
