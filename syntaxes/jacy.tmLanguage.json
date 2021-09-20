@@ -98,7 +98,7 @@
 				{
 					"comment": "Control-flow keywords",
 					"name": "keyword.control.jacy",
-					"match": "\\b(break|continue|else|if|in|for|loop|match|return|while)\\b"
+					"match": "\\b(break|continue|else|elif|if|in|for|loop|match|return|while)\\b"
 				},
 				{
 					"name": "storage.modifier.jacy",
