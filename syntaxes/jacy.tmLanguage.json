@@ -696,7 +696,8 @@
 				},
 				"mod": {
 					"comment": "`mod` item",
-					"begin": "\\b(mod)\\s+",
+					"begin": "\\b(mod)\\b",
+					"end": "(?<=})|$",
 					"beginCaptures": {
 						"1": {
 							"name": "storage.type.jacy"
@@ -704,25 +705,19 @@
 					},
 					"patterns": [
 						{
-							"begin": "([\\p{Alpha}_][\\w]*)",
-							"end": "(?=[\\{;])",
-							"beginCaptures": {
-								"1": {
-									"name": "support.type.jacy"
-								}
-							}
+							"match": "([\\p{Alpha}_][\\w]*)",
+							"name": "support.type.jacy"
 						},
 						{
-
-							"begin": "\\{",
+							"begin": "(\\{)",
 							"beginCaptures": {
-								"0": {
+								"1": {
 									"name": "punctuation.brace.begin.jacy"
 								}
 							},
-							"end": "\\}",
+							"end": "(\\})",
 							"endCaptures": {
-								"0": {
+								"1": {
 									"name": "punctuation.brace.end.jacy"
 								}
 							},
