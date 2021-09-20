@@ -147,9 +147,8 @@
 					"match": "\\b(mut)\\b"
 				},
 				{
-					"comment": "Keywords",
-					"name": "keyword.other.jacy",
-					"match": "\\b(party|mod|let|ref|use|as|move)\\b"
+					"name": "keyword.other.rust storage.type.rust",
+					"match": "\\b(let)\\b"
 				},
 				{
 					"comment": "Reserved keywords",
@@ -546,9 +545,9 @@
 					"patterns": [
 						{
 							"name": "meta.definition.function-return-type.jacy",
-							"begin": "(=)",
+							"begin": "=",
 							"beginCaptures": {
-								"1": {
+								"0": {
 									"name": "keyword.operator.assign.jacy"
 								}
 							},
@@ -830,11 +829,45 @@
 				},
 				{
 					"include": "#lifetime"
+				},
+				{"include": "#let"}
+			],
+			"repository": {
+				"let": {
+					"comment": "`let` statement",
+					"name": "meta.definition.variable.jacy",
+					"begin": "\\b(let)\\b",
+					"end": ";",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.let.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "(:)",
+							"end": "(?=[;=])",
+							"patterns": [{"include": "#types"}]
+						},
+						{
+							"begin": "=",
+							"end": "(?=;)",
+							"beginCaptures": {
+								"0": {
+									"name": "keyword.operator.assign.jacy"
+								}
+							},
+							"patterns": [{"include": "#expressions"}]
+						}
+					]
 				}
-			]
+			}
 		},
 		"expressions": {
 			"patterns": [
+				{
+					"include": "#keywords"
+				},
 				{
 					"include": "#func_call"
 				},
