@@ -474,6 +474,14 @@
 							]
 						},
 						{
+							"match": "\\b([\\p{Alpha}_]+)\\b\\s*(?!:)",
+							"captures": {
+								"1": {
+									"name": "support.function.label.jacy"
+								}
+							}
+						},
+						{
 							"begin": "(:)",
 							"end": "(?=[,\\)])",
 							"beginCaptures": {
