@@ -276,42 +276,6 @@
 				}
 			]
 		},
-		"spec_idents": {
-			"patterns": [
-				{"include": "#prelude_variants"},
-				{"include": "#self_path"},
-				{"include": "#self"}
-			]
-		},
-		"sigils": {
-			"comment": "Sigils",
-			"name": "keyword.operator.sigil.jacy",
-			"match": "[&*](?=[\\w\\(\\[\\|\\\"]+)"
-		},
-		"modifiers": {
-			"patterns": [
-				{
-					"comment": "Mut modifier",
-					"name": "storage.modifier.mut.jacy",
-					"match": "\\bmut\\b"
-				},
-				{
-					"comment": "Pub modifier",
-					"name": "storage.modifier.pub.jacy",
-					"match": "\\bpub\\b"
-				},
-				{
-					"comment": "Const modifier",
-					"name": "storage.modifier.const.jacy",
-					"match": "\\bconst\\b"
-				},
-				{
-					"comment": "Static modifier",
-					"name": "storage.modifier.static.jacy",
-					"match": "\\bstatic\\b"
-				}
-			]
-		},
 		"types": {
 			"patterns": [
 				{"include": "#comments"},
@@ -470,7 +434,7 @@
 						{
 							"end": "(?=[:])",
 							"patterns": [
-								{"include": "#patterns"}
+								{"include": "#pats"}
 							]
 						},
 						{
@@ -607,8 +571,7 @@
 								{"include": "#sigils"},
 								{"include": "#modifiers"},
 								{"include": "#types"},
-								{"include": "#generic_params"},
-								{"include": "#misc_operators"}
+								{"include": "#generic_params"}
 							]
 						}
 					]
@@ -745,8 +708,24 @@
 				}
 			}
 		},
-		"patterns": {
-			
+		"pats": {
+			"patterns": [
+				{
+					"name": "meta.ident-pattern.jacy",
+					"match": "(\\bref\\b)?(\\bmut\\b)?(\\p{Alpha}+)",
+					"captures": {
+						"1": {
+							"name": "invalid.illegal.jacy"
+						},
+						"2": {
+							"name": "storage.modifier.mut.pattern.jacy"
+						},
+						"3": {
+							"name": "variable.other.pattern.jacy"
+						}
+					}
+				}
+			]
 		},
 		"statements": {
 			"patterns": [
@@ -759,8 +738,6 @@
 				{"include": "#comments"},
 				{"include": "#modifiers"},
 				{"include": "#operators"},
-				{"include": "#sigils"},
-				{"include": "#lifetime"},
 				{"include": "#let"}
 			],
 			"repository": {
@@ -779,6 +756,12 @@
 							"begin": "(:)",
 							"end": "(?=[;=])",
 							"patterns": [{"include": "#types"}]
+						},
+						{
+							"end": "(?=[:=])",
+							"patterns": [
+								{"include": "#pats"}
+							]
 						},
 						{
 							"begin": "=",
