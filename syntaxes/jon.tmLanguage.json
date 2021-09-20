@@ -114,13 +114,14 @@
 							"name": "punctuation.separator.jon"
 						}
 					},
-					"end": "(,)|(?=\\])|\\n",
+					"end": "(,)|(?=\\])|\\n|\\Z",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.separator.jon"
 						}
 					},
 					"patterns": [
+						{"include": "#comments"},
 						{"include": "#value"}
 					]
 				}
@@ -132,6 +133,7 @@
 				{
 					"contentName": "entity.name.jon",
 					"patterns": [
+						{"include": "#comments"},
 						{"include": "#string"}
 					]
 				},
@@ -143,6 +145,7 @@
 		},
 		"value": {
 			"patterns": [
+				{"include": "#comments"},
 				{"include": "#constant"},
 				{"include": "#string"},
 				{"include": "#integer"},
@@ -175,6 +178,7 @@
 				}
 			},
 			"patterns": [
+				{"include": "#comments"},
 				{"include": "#key_value"}
 			]
 		},
@@ -194,6 +198,7 @@
 				}
 			},
 			"patterns": [
+				{"include": "#comments"},
 				{"include": "#value"},
 				{
 					"match": "(,)|(?=\\])|\\n",
@@ -207,6 +212,7 @@
 		},
 		"float": {
 			"patterns": [
+				{"include": "#comments"},
 				{
 					"comment": "Floating-point number",
 					"name": "constant.numeric.float.jon",
@@ -226,6 +232,7 @@
 		},
 		"integer": {
 			"patterns": [
+				{"include": "#comments"},
 				{
 					"comment": "Hex int literal",
 					"name": "constant.numeric.hex.jon",
