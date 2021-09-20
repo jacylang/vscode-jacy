@@ -969,16 +969,16 @@
 				},
 				"func_call": {
 					"comment": "Function call",
-					"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(\\()",
+					"begin": "((\\p{Alpha}+)|(?:[\\)\\]\\}\\?\\!]))\\s*(\\()",
 					"beginCaptures": {
-						"1": {
+						"2": {
 							"name": "entity.name.function.call.jacy"
 						},
-						"2": {
+						"3": {
 							"name": "punctuation.definition.arguments.begin.jacy"
 						}
 					},
-					"end": "\\)",
+					"end": "(?=\\))",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.arguments.end.jacy"
@@ -993,4 +993,3 @@
 		}
 	}
 }
-	
