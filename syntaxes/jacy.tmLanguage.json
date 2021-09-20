@@ -5,26 +5,16 @@
 		"jc"
 	],
 	"patterns": [
-		{
-			"include": "#items"
-		},
+		{"include": "#items"},
 		{"include": "#path_prefix"}
 	],
 	"repository": {
 		"comments": {
 			"patterns": [
-				{
-					"include": "#line_comment"
-				},
-				{
-					"include": "#block_comment"
-				},
-				{
-					"include": "#line_doc_comment"
-				},
-				{
-					"include": "#block_doc_comment"
-				}
+				{"include": "#line_comment"},
+				{"include": "#block_comment"},
+				{"include": "#line_doc_comment"},
+				{"include": "#block_doc_comment"}
 			]
 		},
 		"docs_contents": {
@@ -281,15 +271,9 @@
 		},
 		"spec_idents": {
 			"patterns": [
-				{
-					"include": "#prelude_variants"
-				},
-				{
-					"include": "#self_path"
-				},
-				{
-					"include": "#self"
-				}
+				{"include": "#prelude_variants"},
+				{"include": "#self_path"},
+				{"include": "#self"}
 			]
 		},
 		"sigils": {
@@ -327,18 +311,10 @@
 					"match": "(&)",
 					"name": "keyword.operator.ref.jacy"
 				},
-				{
-					"include": "#builtin_types"
-				},
-				{
-					"include": "#optional"
-				},
-				{
-					"include": "#generic_params"
-				},
-				{
-					"include": "#comments"
-				},
+				{"include": "#builtin_types"},
+				{"include": "#optional"},
+				{"include": "#generic_params"},
+				{"include": "#comments"},
 				{
 					"name": "entity.name.type.jacy",
 					"match": "[A-Z][A-Za-z_]*"
@@ -373,9 +349,7 @@
 				}
 			},
 			"patterns": [
-				{
-					"include": "#comments"
-				},
+				{"include": "#comments"},
 				{
 					"match": "\\b\\s*(=)\\s*\\b",
 					"captures": {
@@ -388,21 +362,11 @@
 					"name": "entity.name.type.jacy",
 					"match": "[A-Z][A-Za-z_]*"
 				},
-				{
-					"include": "#sigils"
-				},
-				{
-					"include": "#modifiers"
-				},
-				{
-					"include": "#types"
-				},
-				{
-					"include": "#generic_params"
-				},
-				{
-					"include": "#lifetime"
-				}
+				{"include": "#sigils"},
+				{"include": "#modifiers"},
+				{"include": "#types"},
+				{"include": "#generic_params"},
+				{"include": "#lifetime"}
 			]
 		},
 		"lifetime": {
@@ -432,27 +396,13 @@
 		},
 		"items": {
 			"patterns": [
-				{
-					"include": "#func"
-				},
-				{
-					"include": "#init"
-				},
-				{
-					"include": "#type_items"
-				},
-				{
-					"include": "#type_alias"
-				},
-				{
-					"include": "#impl"
-				},
-				{
-					"include": "#use_decl"
-				},
-				{
-					"include": "#mod"
-				}
+				{"include": "#func"},
+				{"include": "#init"},
+				{"include": "#type_items"},
+				{"include": "#type_alias"},
+				{"include": "#impl"},
+				{"include": "#use_decl"},
+				{"include": "#mod"}
 			],
 			"repository": {
 				"func": {
@@ -466,22 +416,16 @@
 						}
 					},
 					"patterns": [
-						{
-							"include": "#generic_params"
-						},
+						{"include": "#generic_params"},
 						{
 							"name": "invalid.illegal.jacy",
-							"patterns": [{
-								"include": "#keywords"
-							}]
+							"patterns": [{"include": "#keywords"}]
 						},
 						{
 							"match": "([\\p{Alpha}_][\\w]*)",
 							"name": "entity.name.function.jacy"
 						},
-						{
-							"include": "#func_params"
-						},
+						{"include": "#func_params"},
 						{
 							"name": "meta.definition.function-return-type.jacy",
 							"begin": "(:)",
@@ -492,14 +436,10 @@
 								}
 							},
 							"patterns": [
-								{
-									"include": "#types"
-								}
+								{"include": "#types"}
 							]
 						},
-						{
-							"include": "#func_body"
-						}
+						{"include": "#func_body"}
 					]
 				},
 				"func_params": {
@@ -520,9 +460,7 @@
 						{
 							"end": "(?=[:])",
 							"patterns": [
-								{
-									"include": "#patterns"
-								}
+								{"include": "#patterns"}
 							]
 						},
 						{
@@ -534,9 +472,7 @@
 								}
 							},
 							"patterns": [
-								{
-									"include": "#types"
-								}
+								{"include": "#types"}
 							]
 						}
 					]
@@ -553,9 +489,7 @@
 							},
 							"end": "(?=;)",
 							"patterns": [
-								{
-									"include": "#expressions"
-								}
+								{"include": "#expressions"}
 							]
 						},
 						{
@@ -572,9 +506,7 @@
 								}
 							},
 							"patterns": [
-								{
-									"include": "#statements"
-								}
+								{"include": "#statements"}
 							]
 						}
 					]
@@ -593,15 +525,9 @@
 						}
 					},
 					"patterns": [
-						{
-							"include": "#generic_params"
-						},
-						{
-							"include": "#func_params"
-						},
-						{
-							"include": "#func_body"
-						}
+						{"include": "#generic_params"},
+						{"include": "#func_params"},
+						{"include": "#func_body"}
 					]
 				},
 				"type_items": {
@@ -623,21 +549,11 @@
 								}
 							},
 							"patterns": [
-								{
-									"include": "#sigils"
-								},
-								{
-									"include": "#modifiers"
-								},
-								{
-									"include": "#types"
-								},
-								{
-									"include": "#generic_params"
-								},
-								{
-									"include": "#misc_operators"
-								}
+								{"include": "#sigils"},
+								{"include": "#modifiers"},
+								{"include": "#types"},
+								{"include": "#generic_params"},
+								{"include": "#misc_operators"}
 							]
 						}
 					]
@@ -652,12 +568,8 @@
 						}
 					},
 					"patterns": [
-						{
-							"include": "#comments"
-						},
-						{
-							"include": "#generic_params"
-						},
+						{"include": "#comments"},
+						{"include": "#generic_params"},
 						{
 							"comment": "Super traits",
 							"begin": "([\\p{Alpha}_][\\w]*)|(?=\\s*for)",
@@ -668,18 +580,10 @@
 								}
 							},
 							"patterns": [
-								{
-									"include": "#comments"
-								},
-								{
-									"include": "#types"
-								},
-								{
-									"include": "#lifetime"
-								},
-								{
-									"include": "#generic_params"
-								},
+								{"include": "#comments"},
+								{"include": "#types"},
+								{"include": "#lifetime"},
+								{"include": "#generic_params"},
 								{
 									"begin": "\\b(for)\\b",
 									"end": "(?<=\\w)(?<!\\sfor)",
@@ -689,12 +593,8 @@
 										}
 									},
 									"patterns": [
-										{
-											"include": "#comments"
-										},
-										{
-											"include": "#types"
-										},
+										{"include": "#comments"},
+										{"include": "#types"},
 										{
 											"match": "[\\p{Alpha}_][\\w]*",
 											"name": "entity.name.type.jacy"
@@ -731,9 +631,7 @@
 									"match": "(=)",
 									"name": "keyword.operator.assign.jacy"
 								},
-								{
-									"include": "#types"
-								}
+								{"include": "#types"}
 							]
 						}
 					]
@@ -809,27 +707,13 @@
 					"name": "punctuation.terminator.jacy",
 					"match": "(;)"
 				},
-				{
-					"include": "#expressions"
-				},
-				{
-					"include": "#items"
-				},
-				{
-					"include": "#comments"
-				},
-				{
-					"include": "#modifiers"
-				},
-				{
-					"include": "#operators"
-				},
-				{
-					"include": "#sigils"
-				},
-				{
-					"include": "#lifetime"
-				},
+				{"include": "#expressions"},
+				{"include": "#items"},
+				{"include": "#comments"},
+				{"include": "#modifiers"},
+				{"include": "#operators"},
+				{"include": "#sigils"},
+				{"include": "#lifetime"},
 				{"include": "#let"}
 			],
 			"repository": {
@@ -865,21 +749,11 @@
 		},
 		"expressions": {
 			"patterns": [
-				{
-					"include": "#keywords"
-				},
-				{
-					"include": "#func_call"
-				},
-				{
-					"include": "#literals"
-				},
-				{
-					"include": "#block_expr"
-				},
-				{
-					"include": "#self"
-				}
+				{"include": "#keywords"},
+				{"include": "#func_call"},
+				{"include": "#literals"},
+				{"include": "#block_expr"},
+				{"include": "#self"}
 			],
 			"repository": {
 				"self": {
@@ -889,21 +763,11 @@
 				},
 				"literals": {
 					"patterns": [
-						{
-							"include": "#bool_lit"
-						},
-						{
-							"include": "#int_lit"
-						},
-						{
-							"include": "#float_lit"
-						},
-						{
-							"include": "#char_lit"
-						},
-						{
-							"include": "#string_lit"
-						}
+						{"include": "#bool_lit"},
+						{"include": "#int_lit"},
+						{"include": "#float_lit"},
+						{"include": "#char_lit"},
+						{"include": "#string_lit"}
 					],
 					"repository": {
 						"bool_lit": {
@@ -1018,15 +882,11 @@
 							"name": "punctuation.block-expr.end.jacy"
 						}
 					},
-					"patterns": [{
-						"include": "#statements"
-					}]
+					"patterns": [{"include": "#statements"}]
 				},
 				"named_list": {
 					"patterns": [
-						{
-							"include": "#comments"
-						},
+						{"include": "#comments"},
 						{
 							"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(:)",
 							"beginCaptures": {
@@ -1046,12 +906,8 @@
 							"comment": "an element with a label",
 							"end": "(?=[,)])",
 							"patterns": [
-								{
-									"include": "#expressions"
-								},
-								{
-									"include": "#named_list"
-								}
+								{"include": "#expressions"},
+								{"include": "#named_list"}
 							]
 						},
 						{
@@ -1059,9 +915,7 @@
 							"comment": "an element without a label (i.e. anything else)",
 							"end": "(?=[,)])",
 							"patterns": [
-								{
-									"include": "#expressions"
-								}
+								{"include": "#expressions"}
 							]
 						}
 					]
@@ -1085,9 +939,7 @@
 					},
 					"name": "meta.function-call.jacy",
 					"patterns": [
-						{
-							"include": "#named_list"
-						}
+						{"include": "#named_list"}
 					]
 				}
 			}
