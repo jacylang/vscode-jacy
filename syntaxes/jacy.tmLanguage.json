@@ -102,6 +102,10 @@
 				},
 				{
 					"name": "storage.modifier.jacy",
+					"match": "\\b(pub)\\b"
+				},
+				{
+					"name": "storage.modifier.jacy",
 					"match": "\\b(const)\\b"
 				},
 				{
@@ -404,7 +408,8 @@
 				{"include": "#impl"},
 				{"include": "#use_decl"},
 				{"include": "#mod"},
-				{"include": "#struct"}
+				{"include": "#struct"},
+				{"include": "#keywords"}
 			],
 			"repository": {
 				"func": {
