@@ -108,6 +108,42 @@
 					"match": "\\b(break|continue|else|if|in|for|loop|match|return|while)\\b"
 				},
 				{
+					"name": "storage.modifier.jacy",
+					"match": "\\b(const)\\b"
+				},
+				{
+					"name": "keyword.declaration.type.jacy storage.type.jacy",
+					"match": "\\b(type)\\b"
+				},
+				{
+					"name": "keyword.declaration.enum.jacy storage.type.jacy",
+					"match": "\\b(enum)\\b"
+				},
+				{
+					"name": "keyword.declaration.trait.jacy storage.type.jacy",
+					"match": "\\b(trait)\\b"
+				},
+				{
+					"name": "keyword.declaration.struct.jacy storage.type.jacy",
+					"match": "\\b(struct)\\b"
+				},
+				{
+					"name": "storage.modifier.static.jacy",
+					"match": "\\b(static)\\b"
+				},
+				{
+					"name": "keyword.other.func.jacy",
+					"match": "\\b(func)\\b"
+				},
+				{
+					"name": "keyword.other.party.jacy",
+					"match": "\\b(party)\\b"
+				},
+				{
+					"name": "storage.modifier.mut.jacy",
+					"match": "\\b(mut)\\b"
+				},
+				{
 					"comment": "Keywords",
 					"name": "keyword.other.jacy",
 					"match": "\\b(party|mod|let|ref|use|super|as|move)\\b"
@@ -116,18 +152,6 @@
 					"comment": "Reserved keywords",
 					"name": "invalid.illegal.jacy",
 					"match": "\\b(try|catch|final|pure|async|await|do|infix|where)\\b"
-				}
-			]
-		},
-		"misc_operators": {
-			"comment": "Misc operators",
-			"name": "keyword.operator.misc.jacy",
-			"match": "->|=>|::|:"
-		},
-		"operators": {
-			"patterns": [
-				{
-					"include": "#misc_operators"
 				},
 				{
 					"comment": "Assignment operator",
@@ -155,9 +179,38 @@
 					"match": "\\+\\+|--"
 				},
 				{
+					"name": "keyword.operator.arrow.single.jacy",
+					"match": "->"
+				},
+				{
+					"name": "keyword.operator.arrow.double.jacy",
+					"match": "=>"
+				},
+				{
+					"comment": "colon",
+					"name": "keyword.operator.jacy",
+					"match": ":(?!:)"
+				},
+				{
+					"name": "keyword.operator.namespace.jacy",
+					"match": "::"
+				},
+				{
+					"match": "(\\*)(?=\\w+)",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.deref.jacy"
+						}
+					}
+				},
+				{
+					"name": "keyword.operator.access.dot.jacy",
+					"match": "\\.(?!\\.)"
+				},
+				{
 					"comment": "Try operators (`expr?` and `expr!`)",
 					"name": "keyword.operator.misc.try.jacy",
-					"match": "\\?|!"
+					"match": "\\?|\\!"
 				}
 			]
 		},
@@ -180,15 +233,36 @@
 				}
 			]
 		},
-		"self": {
-			"comment": "Self instance variable",
-			"name": "variable.language.jacy",
-			"match": "\\bself\\b"
-		},
-		"self_path": {
-			"comment": "Self as part of the part",
-			"name": "keyword.other.jacy",
-			"match": "(self)::"
+		"path": {
+			"comment": "Some path",
+			"patterns": [
+				{"include": "#comments"},
+				{
+					"match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!super|self)::)",
+					"captures": {
+						"1": {
+							"name": "entity.name.namespace.jacy"
+						},
+						"2": {
+							"name": "keyword.operator.namespace.jacy"
+						}
+					}
+				},
+				{
+					"patterns": [
+						{
+							"comment": "self as path prefix",
+							"match": "\\b[Ss]elf\\b",
+							"name": "variable.language.self.jacy"
+						},
+						{
+							"comment": "super as path prefix",
+							"match": "\\bsuper\\b",
+							"name": "variable.language.super.jacy"
+						}
+					]
+				}
+			]
 		},
 		"prelude_variants": {
 			"patterns": [
@@ -366,219 +440,209 @@
 				},
 				{
 					"include": "#impl"
+				},
+				{
+					"include": "#use_decl"
+				},
+				{
+					"include": "#mod"
 				}
-			]
-		},
-		"func": {
-			"comment": "Function definition",
-			"name": "meta.definition.function.jacy",
-			"begin": "\\b(func)\\b",
-			"end": "(?<=})|$",
-			"beginCaptures": {
-				"1": {
-					"name": "keyword.other.func.jacy"
-				}
-			},
-			"patterns": [
-				{
-					"include": "#generic_params"
-				},
-				{
-					"name": "invalid.illegal.jacy",
-					"patterns": [{
-						"include": "#keywords"
-					}]
-				},
-				{
-					"match": "([\\p{Alpha}_][\\w]*)",
-					"name": "entity.name.function.jacy"
-				},
-				{
-					"include": "#func_params"
-				},
-				{
-					"name": "meta.definition.function-return-type.jacy",
-					"begin": "(:)",
-					"end": "(?=[\\{;=])",
+			],
+			"repository": {
+				"func": {
+					"comment": "Function definition",
+					"name": "meta.definition.function.jacy",
+					"begin": "\\b(func)\\b",
+					"end": "(?<=})|$",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.punctuation.colon.jacy"
+							"name": "keyword.other.func.jacy"
 						}
 					},
 					"patterns": [
-						{
-							"include": "#types"
-						}
-					]
-				},
-				{
-					"include": "#func_body"
-				}
-			]
-		},
-		"func_params": {
-			"name": "meta.definition.params.jacy",
-			"begin": "(\\()",
-			"end": "(\\))",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.definition.params.begin.jacy"
-				}
-			},
-			"endCaptures": {
-				"1": {
-					"name": "punctuation.definition.params.end.jacy"
-				}
-			},
-			"patterns": [
-				{
-					"end": "(?=[:])",
-					"patterns": [
-						{
-							"include": "#patterns"
-						}
-					]
-				},
-				{
-					"begin": "(:)",
-					"end": "(?=[,\\)])",
-					"beginCaptures": {
-						"1": {
-							"name": "keyword.punctuation.colon.jacy"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#types"
-						}
-					]
-				}
-			]
-		},
-		"func_body": {
-			"patterns": [
-				{
-					"name": "meta.definition.function-return-type.jacy",
-					"begin": "(=)",
-					"beginCaptures": {
-						"1": {
-							"name": "keyword.operator.assign.jacy"
-						}
-					},
-					"end": "(?=;)",
-					"patterns": [
-						{
-							"include": "#expressions"
-						}
-					]
-				},
-				{
-					"begin": "(\\{)",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.brace.begin.jacy"
-						}
-					},
-					"end": "(\\})",
-					"endCaptures": {
-						"1": {
-							"name": "punctuation.brace.end.jacy"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#statements"
-						}
-					]
-				}
-			]
-		},
-		"init": {
-			"comment": "Initializer definition",
-			"name": "meta.definition.init.jacy",
-			"begin": "\\b(init)([?!])?",
-			"end": "(?<=})|$",
-			"beginCaptures": {
-				"1": {
-					"name": "keyword.other.init.jacy"
-				},
-				"2": {
-					"name": "keyword.punctuation.jacy"
-				}
-			},
-			"patterns": [
-				{
-					"include": "#generic_params"
-				},
-				{
-					"include": "#func_params"
-				},
-				{
-					"include": "#func_body"
-				}
-			]
-		},
-		"type_items": {
-			"comment": "Type item",
-			"begin": "\\b(enum|struct|trait)\\b",
-			"end": "(?=[\\{\\(;])",
-			"beginCaptures": {
-				"1": {
-					"name": "storage.type.jacy"
-				}
-			},
-			"patterns": [
-				{
-					"begin": "([\\p{Alpha}_][\\w]*)",
-					"end": "(?=[\\{;])",
-					"beginCaptures": {
-						"1": {
-							"name": "entity.name.type.jacy"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#sigils"
-						},
-						{
-							"include": "#modifiers"
-						},
-						{
-							"include": "#types"
-						},
 						{
 							"include": "#generic_params"
 						},
 						{
-							"include": "#misc_operators"
+							"name": "invalid.illegal.jacy",
+							"patterns": [{
+								"include": "#keywords"
+							}]
+						},
+						{
+							"match": "([\\p{Alpha}_][\\w]*)",
+							"name": "entity.name.function.jacy"
+						},
+						{
+							"include": "#func_params"
+						},
+						{
+							"name": "meta.definition.function-return-type.jacy",
+							"begin": "(:)",
+							"end": "(?=[\\{;=])",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.punctuation.colon.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#types"
+								}
+							]
+						},
+						{
+							"include": "#func_body"
 						}
 					]
-				}
-			]
-		},
-		"impl": {
-			"comment": "Implementation item",
-			"begin": "\\b(impl)\\b",
-			"end": "(?=[\\{])",
-			"beginCaptures": {
-				"1": {
-					"name": "storage.type.impl.jacy"
-				}
-			},
-			"patterns": [
-				{
-					"include": "#comments"
 				},
-				{
-					"include": "#generic_params"
+				"func_params": {
+					"name": "meta.definition.params.jacy",
+					"begin": "(\\()",
+					"end": "(\\))",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.params.begin.jacy"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.params.end.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"end": "(?=[:])",
+							"patterns": [
+								{
+									"include": "#patterns"
+								}
+							]
+						},
+						{
+							"begin": "(:)",
+							"end": "(?=[,\\)])",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.punctuation.colon.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#types"
+								}
+							]
+						}
+					]
 				},
-				{
-					"comment": "Super traits",
-					"begin": "([\\p{Alpha}_][\\w]*)|(?=\\s*for)",
+				"func_body": {
+					"patterns": [
+						{
+							"name": "meta.definition.function-return-type.jacy",
+							"begin": "(=)",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.operator.assign.jacy"
+								}
+							},
+							"end": "(?=;)",
+							"patterns": [
+								{
+									"include": "#expressions"
+								}
+							]
+						},
+						{
+							"begin": "(\\{)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.brace.begin.jacy"
+								}
+							},
+							"end": "(\\})",
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.brace.end.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#statements"
+								}
+							]
+						}
+					]
+				},
+				"init": {
+					"comment": "Initializer definition",
+					"name": "meta.definition.init.jacy",
+					"begin": "\\b(init)([?!])?",
+					"end": "(?<=})|$",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.init.jacy"
+						},
+						"2": {
+							"name": "keyword.punctuation.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#generic_params"
+						},
+						{
+							"include": "#func_params"
+						},
+						{
+							"include": "#func_body"
+						}
+					]
+				},
+				"type_items": {
+					"comment": "Type item",
+					"begin": "\\b(enum|struct|trait)\\b",
+					"end": "(?=[\\{\\(;])",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "([\\p{Alpha}_][\\w]*)",
+							"end": "(?=[\\{;])",
+							"beginCaptures": {
+								"1": {
+									"name": "entity.name.type.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#sigils"
+								},
+								{
+									"include": "#modifiers"
+								},
+								{
+									"include": "#types"
+								},
+								{
+									"include": "#generic_params"
+								},
+								{
+									"include": "#misc_operators"
+								}
+							]
+						}
+					]
+				},
+				"impl": {
+					"comment": "Implementation item",
+					"begin": "\\b(impl)\\b",
 					"end": "(?=[\\{])",
 					"beginCaptures": {
 						"1": {
-							"name": "entity.name.type.jacy"
+							"name": "storage.type.impl.jacy"
 						}
 					},
 					"patterns": [
@@ -586,20 +650,15 @@
 							"include": "#comments"
 						},
 						{
-							"include": "#types"
-						},
-						{
-							"include": "#lifetime"
-						},
-						{
 							"include": "#generic_params"
 						},
 						{
-							"begin": "\\b(for)\\b",
-							"end": "(?<=\\w)(?<!\\sfor)",
+							"comment": "Super traits",
+							"begin": "([\\p{Alpha}_][\\w]*)|(?=\\s*for)",
+							"end": "(?=[\\{])",
 							"beginCaptures": {
 								"1": {
-									"name": "keyword.other.for.jacy"
+									"name": "entity.name.type.jacy"
 								}
 							},
 							"patterns": [
@@ -610,47 +669,129 @@
 									"include": "#types"
 								},
 								{
-									"match": "[\\p{Alpha}_][\\w]*",
-									"name": "entity.name.type.jacy"
+									"include": "#lifetime"
+								},
+								{
+									"include": "#generic_params"
+								},
+								{
+									"begin": "\\b(for)\\b",
+									"end": "(?<=\\w)(?<!\\sfor)",
+									"beginCaptures": {
+										"1": {
+											"name": "keyword.other.for.jacy"
+										}
+									},
+									"patterns": [
+										{
+											"include": "#comments"
+										},
+										{
+											"include": "#types"
+										},
+										{
+											"match": "[\\p{Alpha}_][\\w]*",
+											"name": "entity.name.type.jacy"
+										}
+									]
 								}
 							]
 						}
 					]
-				}
-			]
-		},
-		"type_alias": {
-			"comment": "Type alias",
-			"begin": "\\b(type)\\b",
-			"end": "(?=;)",
-			"beginCaptures": {
-				"1": {
-					"name": "storage.type.jacy"
 				},
-				"2": {
-					"name": "entity.name.type.jacy"
-				}
-			},
-			"patterns": [
-				{
-					"begin": "([\\p{Alpha}_][\\w]*)",
+				"type_alias": {
+					"comment": "Type alias",
+					"begin": "\\b(type)\\b",
 					"end": "(?=;)",
 					"beginCaptures": {
 						"1": {
+							"name": "storage.type.jacy"
+						},
+						"2": {
 							"name": "entity.name.type.jacy"
 						}
 					},
 					"patterns": [
 						{
-							"match": "(=)",
-							"name": "keyword.operator.assign.jacy"
+							"begin": "([\\p{Alpha}_][\\w]*)",
+							"end": "(?=;)",
+							"beginCaptures": {
+								"1": {
+									"name": "entity.name.type.jacy"
+								}
+							},
+							"patterns": [
+								{
+									"match": "(=)",
+									"name": "keyword.operator.assign.jacy"
+								},
+								{
+									"include": "#types"
+								}
+							]
+						}
+					]
+				},
+				"use_decl": {
+					"comment": "`use` declaration",
+					"name": "meta.use.jacy",
+					"begin": "\\b(use)\\s",
+					"end": ";",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.jacy"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.terminator.jacy"
+						}
+					},
+					"patterns": [
+						{"include": "#comments"},
+						{"include": "#keywords"},
+						{"include": "#path"}
+					]
+				},
+				"mod": {
+					"comment": "`mod` item",
+					"begin": "\\b(mod)\\s+",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.jacy"
+						}
+					},
+					"patterns": [
+						{
+							"begin": "([\\p{Alpha}_][\\w]*)",
+							"end": "(?=[\\{;])",
+							"beginCaptures": {
+								"1": {
+									"name": "support.type.jacy"
+								}
+							}
 						},
 						{
-							"include": "#types"
+
+							"begin": "\\{",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.brace.begin.jacy"
+								}
+							},
+							"end": "\\}",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.brace.end.jacy"
+								}
+							},
+							"patterns": [
+								{"include": "#items"}
+							]
 						}
 					]
 				}
-			]
+			}
 		},
 		"patterns": {
 			
@@ -677,9 +818,6 @@
 					"include": "#operators"
 				},
 				{
-					"include": "#punctuation"
-				},
-				{
 					"include": "#sigils"
 				},
 				{
@@ -697,9 +835,17 @@
 				},
 				{
 					"include": "#block_expr"
+				},
+				{
+					"include": "#self"
 				}
 			],
 			"repository": {
+				"self": {
+					"comment": "Self instance variable",
+					"name": "variable.language.jacy",
+					"match": "\\bself\\b"
+				},
 				"literals": {
 					"patterns": [
 						{
