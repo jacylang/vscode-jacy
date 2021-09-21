@@ -6,7 +6,8 @@
 	],
 	"patterns": [
 		{"include": "#items"},
-		{"include": "#path_prefix"}
+		{"include": "#path_prefix"},
+		{"include": "#attrs"}
 	],
 	"repository": {
 		"comments": {
@@ -375,7 +376,8 @@
 				{"include": "#use_decl"},
 				{"include": "#mod"},
 				{"include": "#struct"},
-				{"include": "#keywords"}
+				{"include": "#keywords"},
+				{"include": "#attrs"}
 			],
 			"repository": {
 				"func": {
@@ -707,6 +709,32 @@
 				}
 			}
 		},
+		"attrs": {
+			"comment": "attribute",
+			"name": "meta.attr.jacy",
+			"begin": "(@)(\\p{Alpha}+)(\\(?)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.operator.at.attr.jacy"
+				},
+				"2": {
+					"name": "keyword.operator.attr.jacy"
+				},
+				"3": {
+					"name": "punctuation.definition.attr.arguments.begin.jacy"
+				}
+			},
+			"end": "(?=\\))|$",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.attr.arguments.end.jacy"
+				}
+			},
+			"patterns": [
+				{"include": "#comments"},
+				{"include": "#named_list"}
+			]
+		},
 		"pats": {
 			"patterns": [
 				{
@@ -714,8 +742,16 @@
 					"name": "storage.modifier.ref.pattern.jacy"
 				},
 				{
-					"name": "variable.other.pattern.jacy",
-					"match": "(\\p{Alpha}+)"
+					"match": "([A-Z]\\p{Alpha}+)\\s*(?=[\\{\\(])",
+					"name": "entity.name.type.jacy"
+				},
+				{
+					"match": "(@)",
+					"name": "keyword.operator.pattern.bind.jacy"
+				},
+				{
+					"match": "(\\p{Alpha}+)",
+					"name": "variable.other.pattern.jacy"
 				}
 			]
 		},
