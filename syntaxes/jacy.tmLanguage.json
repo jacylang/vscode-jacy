@@ -20,10 +20,7 @@
 		},
 		"docs_contents": {
 			"patterns": [
-				{
-					"name": "punctuation.definition.doc_mark.jacy",
-					"match": "^@\\w+$"
-				}
+				
 			]
 		},
 		"line_doc_comment": {
@@ -712,7 +709,7 @@
 		"attrs": {
 			"comment": "attribute",
 			"name": "meta.attr.jacy",
-			"begin": "(@)(\\p{Alpha}+)(\\(?)",
+			"begin": "(@)\\s*(\\p{Alpha}+)(\\()",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.operator.at.attr.jacy"
@@ -724,15 +721,65 @@
 					"name": "punctuation.definition.attr.arguments.begin.jacy"
 				}
 			},
-			"end": "(?=\\))|$",
+			"end": "(\\))|(,)|$",
 			"endCaptures": {
-				"0": {
+				"1": {
 					"name": "punctuation.definition.attr.arguments.end.jacy"
+				},
+				"2": {
+					"name": "punctuation.terminator.jacy"
 				}
 			},
 			"patterns": [
 				{"include": "#comments"},
-				{"include": "#named_list"}
+				{
+					"begin": "(?<=\\()",
+					"end": "(?=\\))",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.attr.arguments.end.jacy"
+						}
+					},
+					"patterns": [
+						{"include": "#named_list"}
+					]
+				}
+			]
+		},
+		"named_list": {
+			"patterns": [
+				{"include": "#comments"},
+				{
+					"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(:)",
+					"beginCaptures": {
+						"1": {
+							"name": "support.function.label.jacy"
+						},
+						"2": {
+							"name": "punctuation.definition.identifier.jacy"
+						},
+						"3": {
+							"name": "punctuation.definition.identifier.jacy"
+						},
+						"4": {
+							"name": "punctuation.separator.label-colon.jacy"
+						}
+					},
+					"comment": "an element with a label",
+					"end": "(?=[,)])",
+					"patterns": [
+						{"include": "#expressions"},
+						{"include": "#named_list"}
+					]
+				},
+				{
+					"begin": "(?![,)])(?=\\S)",
+					"comment": "an element without a label (i.e. anything else)",
+					"end": "(?=[,)])",
+					"patterns": [
+						{"include": "#expressions"}
+					]
+				}
 			]
 		},
 		"pats": {
@@ -946,42 +993,6 @@
 						}
 					},
 					"patterns": [{"include": "#statements"}]
-				},
-				"named_list": {
-					"patterns": [
-						{"include": "#comments"},
-						{
-							"begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(:)",
-							"beginCaptures": {
-								"1": {
-									"name": "support.function.label.jacy"
-								},
-								"2": {
-									"name": "punctuation.definition.identifier.jacy"
-								},
-								"3": {
-									"name": "punctuation.definition.identifier.jacy"
-								},
-								"4": {
-									"name": "punctuation.separator.label-colon.jacy"
-								}
-							},
-							"comment": "an element with a label",
-							"end": "(?=[,)])",
-							"patterns": [
-								{"include": "#expressions"},
-								{"include": "#named_list"}
-							]
-						},
-						{
-							"begin": "(?![,)])(?=\\S)",
-							"comment": "an element without a label (i.e. anything else)",
-							"end": "(?=[,)])",
-							"patterns": [
-								{"include": "#expressions"}
-							]
-						}
-					]
 				},
 				"func_call": {
 					"comment": "Function call",
