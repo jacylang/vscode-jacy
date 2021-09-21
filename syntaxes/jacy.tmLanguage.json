@@ -721,7 +721,7 @@
 					"name": "punctuation.definition.attr.arguments.begin.jacy"
 				}
 			},
-			"end": "(\\))|(,)|$",
+			"end": "(?:(\\))|,|$)(,)",
 			"endCaptures": {
 				"1": {
 					"name": "punctuation.definition.attr.arguments.end.jacy"
