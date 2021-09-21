@@ -709,19 +709,19 @@
 		"attrs": {
 			"comment": "attribute",
 			"name": "meta.attr.jacy",
-			"begin": "(@)\\s*(\\p{Alpha}+)(\\()",
+			"begin": "(@)\\s*(\\p{Alpha}+)",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.operator.at.attr.jacy"
+					"name": "entity.other.attribute-name.at.jacy"
 				},
 				"2": {
-					"name": "keyword.operator.attr.jacy"
+					"name": "entity.other.attribute-name.jacy"
 				},
 				"3": {
 					"name": "punctuation.definition.attr.arguments.begin.jacy"
 				}
 			},
-			"end": "(?:(\\))|,|$)(,)",
+			"end": "(?=\\))|$",
 			"endCaptures": {
 				"1": {
 					"name": "punctuation.definition.attr.arguments.end.jacy"
@@ -733,8 +733,8 @@
 			"patterns": [
 				{"include": "#comments"},
 				{
-					"begin": "(?<=\\()",
-					"end": "(?=\\))",
+					"begin": "(\\()",
+					"end": "(\\))",
 					"endCaptures": {
 						"1": {
 							"name": "punctuation.definition.attr.arguments.end.jacy"
