@@ -710,19 +710,12 @@
 		"pats": {
 			"patterns": [
 				{
-					"name": "meta.ident-pattern.jacy",
-					"match": "(ref)?\\s+(mut)?\\s+(\\p{Alpha}+)",
-					"captures": {
-						"1": {
-							"name": "invalid.illegal.jacy"
-						},
-						"2": {
-							"name": "storage.modifier.mut.pattern.jacy"
-						},
-						"3": {
-							"name": "variable.other.pattern.jacy"
-						}
-					}
+					"match": "\\bref\\b",
+					"name": "storage.modifier.ref.pattern.jacy"
+				},
+				{
+					"name": "variable.other.pattern.jacy",
+					"match": "(\\p{Alpha}+)"
 				}
 			]
 		},
