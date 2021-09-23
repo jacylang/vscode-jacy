@@ -2,7 +2,7 @@
     "name": "jacy-lang",
     "displayName": "Jacy lang",
     "description": "Syntax highlighting for Jacy programming language",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "publisher": "jacy-lang",
     "icon": "assets/Jacy.png",
     "galleryBanner": {
