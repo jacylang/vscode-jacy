@@ -244,7 +244,7 @@
 			"patterns": [
 				{"include": "#comments"},
 				{
-					"match": "(\\p{Alpha}+)((?<!super|self)::)(\\p{Alpha}+(?!::))",
+					"match": "(\\p{Alpha}+)((?<!super|self)::)(((\\p{Alpha}+)|\\*)(?!::))",
 					"captures": {
 						"1": {
 							"name": "entity.name.namespace.jacy"
@@ -650,7 +650,7 @@
 				"use_decl": {
 					"comment": "`use` declaration",
 					"name": "meta.use.jacy",
-					"begin": "\\b(use)\\s",
+					"begin": "\\b(use)\\b",
 					"end": ";",
 					"beginCaptures": {
 						"1": {
@@ -665,8 +665,8 @@
 					"patterns": [
 						{"include": "#comments"},
 						{"include": "#keywords"},
-						{"include": "#path"},
-						{"include": "#path_prefix"}
+						{"include": "#path_prefix"},
+						{"include": "#path"}
 					]
 				},
 				"mod": {
