@@ -19,9 +19,7 @@
 			]
 		},
 		"docs_contents": {
-			"patterns": [
-				
-			]
+			"patterns": []
 		},
 		"line_doc_comment": {
 			"name": "comment.line.doc.jacy",
