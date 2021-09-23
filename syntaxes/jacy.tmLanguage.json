@@ -243,8 +243,9 @@
 			"comment": "Some path",
 			"patterns": [
 				{"include": "#comments"},
+				{"include": "#generic_params"},
 				{
-					"match": "(\\p{Alpha}+)((?<!super|self)::)(((\\p{Alpha}+)|\\*)(?!::))",
+					"match": "(\\p{Alpha}+)(((?<!super|self)|(?<=\\>))::)(((\\p{Alpha}+)|\\*)(?!::))",
 					"captures": {
 						"1": {
 							"name": "entity.name.namespace.jacy"
@@ -861,6 +862,7 @@
 				{"include": "#func_call"},
 				{"include": "#literals"},
 				{"include": "#block_expr"},
+				{"include": "#path"},
 				{"include": "#self"}
 			],
 			"repository": {
@@ -994,7 +996,8 @@
 				},
 				"func_call": {
 					"comment": "Function call",
-					"begin": "((\\p{Alpha}+)|(?:[\\)\\]\\}\\?\\!]))\\s*(\\()",
+					"name": "meta.function.call.jacy",
+					"begin": "((\\p{Alpha}+)|(?:[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
 					"beginCaptures": {
 						"2": {
 							"name": "entity.name.function.call.jacy"
@@ -1009,7 +1012,6 @@
 							"name": "punctuation.definition.arguments.end.jacy"
 						}
 					},
-					"name": "meta.function-call.jacy",
 					"patterns": [
 						{"include": "#named_list"}
 					]
