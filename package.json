@@ -103,7 +103,14 @@
         "configuration": {
             "title": "Jacy"
         },
-        "commands": []
+        "commands": [],
+        "themes": [
+            {
+                "label": "Jacy Dark",
+                "uiTheme": "vs-dark",
+                "path": "./jacy-theme-dark.json"
+            }
+        ]
     },
     "devDependencies": {
         "@types/vscode": "^1.58.0",

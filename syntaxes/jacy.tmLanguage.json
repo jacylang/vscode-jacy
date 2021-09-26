@@ -260,6 +260,7 @@
 				}
 			]
 		},
+
 		"types": {
 			"patterns": [
 				{"include": "#comments"},
@@ -755,12 +756,6 @@
 							"name": "support.function.label.jacy"
 						},
 						"2": {
-							"name": "punctuation.definition.identifier.jacy"
-						},
-						"3": {
-							"name": "punctuation.definition.identifier.jacy"
-						},
-						"4": {
 							"name": "punctuation.separator.label-colon.jacy"
 						}
 					},
