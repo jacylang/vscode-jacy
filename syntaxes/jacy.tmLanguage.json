@@ -800,9 +800,9 @@
 		},
 		"statements": {
 			"patterns": [
+				{"include": "#comments"},
 				{"include": "#expressions"},
 				{"include": "#items"},
-				{"include": "#comments"},
 				{"include": "#modifiers"},
 				{"include": "#operators"},
 				{"include": "#let"},
@@ -832,7 +832,10 @@
 							"name": "meta.definition.variable.pattern.jacy",
 							"begin": "(?<=(\\blet\\b))",
 							"end": "(?=[:=])",
-							"patterns": [{"include": "#pats"}]
+							"patterns": [
+								{"include": "#comments"},
+								{"include": "#pats"}
+							]
 						},
 						{
 							"begin": "(:)",
@@ -842,7 +845,10 @@
 									"name": "keyword.punctuation.colon.jacy"
 								}
 							},
-							"patterns": [{"include": "#types"}]
+							"patterns": [
+								{"include": "#comments"},
+								{"include": "#types"}
+							]
 						},
 						{
 							"begin": "=",
@@ -852,7 +858,10 @@
 									"name": "keyword.operator.assign.jacy"
 								}
 							},
-							"patterns": [{"include": "#expressions"}]
+							"patterns": [
+								{"include": "#comments"},
+								{"include": "#expressions"}
+							]
 						}
 					]
 				}
@@ -860,6 +869,7 @@
 		},
 		"expressions": {
 			"patterns": [
+				{"include": "#comments"},
 				{"include": "#keywords"},
 				{"include": "#func_call"},
 				{"include": "#literals"},
