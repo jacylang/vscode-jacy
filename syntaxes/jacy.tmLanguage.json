@@ -5,7 +5,7 @@
 		"jc"
 	],
 	"patterns": [
-		{"include": "#items"},
+		{"include": "#statements"},
 		{"include": "#path_prefix"},
 		{"include": "#attrs"}
 	],
@@ -653,14 +653,14 @@
 					"comment": "`use` declaration",
 					"name": "meta.use.jacy",
 					"begin": "\\b(use)\\b",
-					"end": ";",
+					"end": "(;)",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.jacy"
 						}
 					},
 					"endCaptures": {
-						"0": {
+						"1": {
 							"name": "punctuation.terminator.jacy"
 						}
 					},
@@ -814,10 +814,15 @@
 					"comment": "`let` statement",
 					"name": "meta.definition.variable.jacy",
 					"begin": "\\b(let)\\b",
-					"end": ";",
+					"end": "(;)",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.let.jacy"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.terminator.jacy"
 						}
 					},
 					"patterns": [
