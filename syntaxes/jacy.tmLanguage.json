@@ -5,6 +5,7 @@
 		"jc"
 	],
 	"patterns": [
+		{"include": "#comments"},
 		{"include": "#statements"},
 		{"include": "#path_prefix"},
 		{"include": "#attrs"}
