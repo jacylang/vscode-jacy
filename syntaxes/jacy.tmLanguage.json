@@ -8,7 +8,8 @@
 		{"include": "#comments"},
 		{"include": "#statements"},
 		{"include": "#path_prefix"},
-		{"include": "#attrs"}
+		{"include": "#attrs"},
+		{"include": "#keywords"}
 	],
 	"repository": {
 		"comments": {
