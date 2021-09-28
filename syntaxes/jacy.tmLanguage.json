@@ -953,13 +953,18 @@
 								{
 									"comment": "String literal",
 									"name": "string.quoted.double.jacy",
-									"begin": "\"",
+									"begin": "(\")",
 									"beginCaptures": {
-										"0": {
+										"1": {
 											"name": "punctuation.definition.string.begin.jacy"
 										}
 									},
-									"end": "\""
+									"end": "(\")",
+									"endCaptures": {
+										"1": {
+											"name": "punctuation.definition.string.end.jacy"
+										}
+									}
 								}
 							]
 						},
