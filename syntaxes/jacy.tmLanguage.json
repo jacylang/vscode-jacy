@@ -798,16 +798,16 @@
 		},
 		"statements": {
 			"patterns": [
-				{
-					"name": "punctuation.terminator.jacy",
-					"match": "(;)"
-				},
 				{"include": "#expressions"},
 				{"include": "#items"},
 				{"include": "#comments"},
 				{"include": "#modifiers"},
 				{"include": "#operators"},
-				{"include": "#let"}
+				{"include": "#let"},
+				{
+					"name": "punctuation.terminator.jacy",
+					"match": "(;)"
+				}
 			],
 			"repository": {
 				"let": {
@@ -863,7 +863,8 @@
 				{"include": "#literals"},
 				{"include": "#block_expr"},
 				{"include": "#path"},
-				{"include": "#self"}
+				{"include": "#self"},
+				{"include": "#tuple"}
 			],
 			"repository": {
 				"self": {
@@ -1014,6 +1015,18 @@
 					},
 					"patterns": [
 						{"include": "#named_list"}
+					]
+				},
+				"tuple": {
+					"name": "meta.tuple.expression.jacy",
+					"begin": "\\(",
+					"end": "\\)",
+					"patterns": [
+						{"include": "#expressions"},
+						{
+							"match": "(,)",
+							"name": "punctuation.separator.tuple.colon.jacy"
+						}
 					]
 				}
 			}
