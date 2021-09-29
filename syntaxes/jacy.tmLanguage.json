@@ -89,14 +89,60 @@
 			}
 		},
 
-
-		"keywords": {
+		"expr_keywords": {
 			"patterns": [
 				{
 					"comment": "Control-flow keywords",
 					"name": "keyword.control.jacy",
 					"match": "\\b(break|continue|else|elif|if|in|for|loop|match|return|while)\\b"
 				},
+				{
+					"comment": "Assignment operator",
+					"name": "keyword.operator.assignment.jacy",
+					"match": "\\+=|-=|/=|\\*=|%=|\\^=|&=|\\|=|<<=|>>=|="
+				},
+				{
+					"comment": "Boolean operators",
+					"name": "keyword.operator.logic.boolean.jacy",
+					"match": "\\b(or|and)\\b"
+				},
+				{
+					"comment": "Comparison operators",
+					"name": "keyword.operator.comparison.jacy",
+					"match": "<=|>=|<|>|==|!=|<=>"
+				},
+				{
+					"comment": "Arithmetic operators",
+					"name": "keyword.operator.arithmetic.jacy",
+					"match": "!|\\+(?!\\+)|-(?!-)|/|\\*|%|\\^|&|\\||<<|>>"
+				},
+				{
+					"comment": "Mistaken operators",
+					"name": "invalid.illegal.jacy",
+					"match": "\\+\\+|--"
+				},
+				{
+					"match": "(\\*)(?=\\w+)",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.deref.jacy"
+						}
+					}
+				},
+				{
+					"name": "keyword.operator.access.dot.jacy",
+					"match": "\\.(?!\\.)"
+				},
+				{
+					"comment": "Try operators (`expr?` and `expr!`)",
+					"name": "keyword.operator.misc.try.jacy",
+					"match": "\\?|\\!"
+				}
+			]
+		},
+
+		"item_keywords": {
+			"patterns": [
 				{
 					"name": "storage.modifier.jacy",
 					"match": "\\b(pub)\\b"
@@ -126,46 +172,13 @@
 					"match": "\\b(static)\\b"
 				},
 				{
-					"name": "keyword.other.func.jacy",
-					"match": "\\b(func)\\b"
-				},
-				{
 					"name": "keyword.other.party.jacy",
 					"match": "\\b(party)\\b"
-				},
-				{
-					"name": "storage.modifier.mut.jacy",
-					"match": "\\b(mut)\\b"
 				},
 				{
 					"comment": "Reserved keywords",
 					"name": "invalid.illegal.jacy",
 					"match": "\\b(try|catch|final|pure|async|await|do|infix|where)\\b"
-				},
-				{
-					"comment": "Assignment operator",
-					"name": "keyword.operator.assignment.jacy",
-					"match": "\\+=|-=|/=|\\*=|%=|\\^=|&=|\\|=|<<=|>>=|="
-				},
-				{
-					"comment": "Boolean operators",
-					"name": "keyword.operator.logic.boolean.jacy",
-					"match": "\\b(or|and)\\b"
-				},
-				{
-					"comment": "Comparison operators",
-					"name": "keyword.operator.comparison.jacy",
-					"match": "<=|>=|<|>|==|!=|<=>"
-				},
-				{
-					"comment": "Arithmetic operators",
-					"name": "keyword.operator.arithmetic.jacy",
-					"match": "!|\\+(?!\\+)|-(?!-)|/|\\*|%|\\^|&|\\||<<|>>"
-				},
-				{
-					"comment": "Mistaken operators",
-					"name": "invalid.illegal.jacy",
-					"match": "\\+\\+|--"
 				},
 				{
 					"name": "keyword.operator.arrow.single.jacy",
@@ -183,23 +196,6 @@
 				{
 					"name": "keyword.operator.namespace.jacy",
 					"match": "::"
-				},
-				{
-					"match": "(\\*)(?=\\w+)",
-					"captures": {
-						"1": {
-							"name": "keyword.operator.deref.jacy"
-						}
-					}
-				},
-				{
-					"name": "keyword.operator.access.dot.jacy",
-					"match": "\\.(?!\\.)"
-				},
-				{
-					"comment": "Try operators (`expr?` and `expr!`)",
-					"name": "keyword.operator.misc.try.jacy",
-					"match": "\\?|\\!"
 				}
 			]
 		},
@@ -365,6 +361,7 @@
 		},
 		"items": {
 			"patterns": [
+				{"include": "#item_keywords"},
 				{"include": "#func"},
 				{"include": "#init"},
 				{"include": "#type_items"},
@@ -399,13 +396,7 @@
 										"0": {
 											"name": "entity.name.function.jacy"
 										}
-									},
-									"patterns": [
-										{
-											"name": "invalid.illegal.jacy",
-											"patterns": [{"include": "#keywords"}]
-										}
-									]
+									}
 								}
 							]
 						},
@@ -686,7 +677,6 @@
 					},
 					"patterns": [
 						{"include": "#comments"},
-						{"include": "#keywords"},
 						{"include": "#path_prefix"},
 						{"include": "#path"}
 					]
@@ -888,6 +878,7 @@
 		"expressions": {
 			"patterns": [
 				{"include": "#comments"},
+				{"include": "#expr_keywords"},
 				{"include": "#func_call"},
 				{"include": "#literals"},
 				{"include": "#block_expr"},
