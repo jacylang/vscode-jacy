@@ -454,18 +454,22 @@
 					},
 					"patterns": [
 						{
-							"end": "(?=[:])",
-							"patterns": [
-								{"include": "#pats"}
-							]
-						},
-						{
-							"match": "\\b([\\p{Alpha}_]+)\\b\\s*(?!:)",
-							"captures": {
+							"begin": "\\b(\\p{Alpha}+)\\b",
+							"end": "(?=:)",
+							"beginCaptures": {
 								"1": {
 									"name": "support.function.label.jacy"
 								}
-							}
+							},
+							"patterns": [
+								{"include": "#pats"}							
+							]
+						},
+						{
+							"end": "(?=:)",
+							"patterns": [
+								{"include": "#pats"}
+							]
 						},
 						{
 							"begin": "(:)",
