@@ -200,7 +200,6 @@
 			]
 		},
 
-
 		"punctuation": {
 			"patterns": [
 				{
@@ -316,7 +315,7 @@
 			"patterns": [
 				{"include": "#comments"},
 				{
-					"match": "\\b\\s*(=)\\s*\\b",
+					"match": "\\b(=)\\b",
 					"captures": {
 						"1": {
 							"name": "keyword.operator.generic_params.jacy"
@@ -410,11 +409,14 @@
 						},
 						{
 							"name": "meta.definition.function-return-type.jacy",
-							"begin": "(:)",
+							"begin": "(:)|(->)",
 							"end": "(?=\\{|;|=|$)",
 							"beginCaptures": {
 								"1": {
 									"name": "keyword.punctuation.colon.jacy"
+								},
+								"2": {
+									"name": "invalid.illegal.jacy"
 								}
 							},
 							"patterns": [
@@ -454,7 +456,7 @@
 					},
 					"patterns": [
 						{
-							"begin": "\\b(\\p{Alpha}+)\\b",
+							"begin": "\\b(\\p{Alpha}+)\\b\\s*(?!:)",
 							"end": "(?=:)",
 							"beginCaptures": {
 								"1": {
@@ -462,7 +464,7 @@
 								}
 							},
 							"patterns": [
-								{"include": "#pats"}							
+								{"include": "#pats"}
 							]
 						},
 						{
