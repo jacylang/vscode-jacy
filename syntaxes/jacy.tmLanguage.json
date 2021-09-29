@@ -8,8 +8,7 @@
 		{"include": "#comments"},
 		{"include": "#statements"},
 		{"include": "#path_prefix"},
-		{"include": "#attrs"},
-		{"include": "#keywords"}
+		{"include": "#attrs"}
 	],
 	"repository": {
 		"comments": {
@@ -266,7 +265,6 @@
 		"types": {
 			"patterns": [
 				{"include": "#comments"},
-				{"include": "#keywords"},
 				{"include": "#generic_params"},
 
 				{"include": "#builtin_types"},
@@ -375,45 +373,78 @@
 				{"include": "#use_decl"},
 				{"include": "#mod"},
 				{"include": "#struct"},
-				{"include": "#keywords"},
 				{"include": "#attrs"}
 			],
 			"repository": {
 				"func": {
 					"comment": "Function definition",
 					"name": "meta.definition.function.jacy",
-					"begin": "\\b(func)\\b",
-					"end": "(?<=})|$",
-					"beginCaptures": {
-						"1": {
-							"name": "keyword.other.func.jacy"
-						}
-					},
+					"begin": "(?=\\s*\\b(?:func)\\b)",
+					"end": "(?=$|\\}|;)",
 					"patterns": [
-						{"include": "#generic_params"},
 						{
-							"name": "invalid.illegal.jacy",
-							"patterns": [{"include": "#keywords"}]
+							"begin": "\\b(func)\\b",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.other.func.jacy"
+								}
+							},
+							"end": "(?=\\(|\\{|:)",
+							"patterns": [
+								{"include": "#comments"},
+								{"include": "#generic_params"},
+								{
+									"match": "\\p{Alpha}+",
+									"captures": {
+										"0": {
+											"name": "entity.name.function.jacy"
+										}
+									},
+									"patterns": [
+										{
+											"name": "invalid.illegal.jacy",
+											"patterns": [{"include": "#keywords"}]
+										}
+									]
+								}
+							]
 						},
 						{
-							"match": "([\\p{Alpha}_][\\w]*)",
-							"name": "entity.name.function.jacy"
+							"begin": "(?=\\()",
+							"end": "(?<=\\))",
+							"patterns": [
+								{"include": "#comments"},
+								{"include": "#func_params"}
+							]
 						},
-						{"include": "#func_params"},
 						{
 							"name": "meta.definition.function-return-type.jacy",
 							"begin": "(:)",
-							"end": "(?=[\\{;=])",
+							"end": "(?=\\{|;|=|$)",
 							"beginCaptures": {
 								"1": {
 									"name": "keyword.punctuation.colon.jacy"
 								}
 							},
 							"patterns": [
+								{"include": "#comments"},
 								{"include": "#types"}
 							]
 						},
-						{"include": "#func_body"}
+						{
+							"name": "meta.definition.function-body.expression.jacy",
+							"begin": "(=)",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.operator.assignment.jacy"
+								}
+							},
+							"end": "(?=;)",
+							"patterns": [
+								{"include": "#comments"},
+								{"include": "#expressions"}
+							]
+						}
 					]
 				},
 				"func_params": {
@@ -461,19 +492,6 @@
 				},
 				"func_body": {
 					"patterns": [
-						{
-							"name": "meta.definition.function-return-type.jacy",
-							"begin": "=",
-							"beginCaptures": {
-								"0": {
-									"name": "keyword.operator.assign.jacy"
-								}
-							},
-							"end": "(?=;)",
-							"patterns": [
-								{"include": "#expressions"}
-							]
-						},
 						{
 							"begin": "(\\{)",
 							"beginCaptures": {
@@ -870,12 +888,12 @@
 		"expressions": {
 			"patterns": [
 				{"include": "#comments"},
-				{"include": "#keywords"},
 				{"include": "#func_call"},
 				{"include": "#literals"},
 				{"include": "#block_expr"},
 				{"include": "#path"},
 				{"include": "#self"},
+				{"include": "#types"},
 				{"include": "#tuple"}
 			],
 			"repository": {
