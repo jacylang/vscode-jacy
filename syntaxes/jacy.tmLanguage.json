@@ -1030,15 +1030,18 @@
 				"func_call": {
 					"comment": "Function call",
 					"name": "meta.function.call.jacy",
-					"begin": "((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?<=[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
+					"begin": "(::)?((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?<=[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
 					"beginCaptures": {
-						"2": {
-							"name": "entity.name.function.call.jacy"
+						"1": {
+							"name": "keyword.operator.namespace.jacy"
 						},
 						"3": {
-							"name": "entity.name.type.constructor.call.jacy"
+							"name": "entity.name.function.call.jacy"
 						},
 						"4": {
+							"name": "entity.name.type.constructor.call.jacy"
+						},
+						"5": {
 							"name": "punctuation.definition.arguments.begin.jacy"
 						}
 					},
