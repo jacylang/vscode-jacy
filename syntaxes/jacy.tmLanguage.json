@@ -241,7 +241,7 @@
 				{"include": "#comments"},
 				{"include": "#generic_params"},
 				{
-					"match": "(\\p{L}+)(((?<!super|self|party)|(?<=\\>))::)(((\\p{L}+)|\\*)(?!::))",
+					"match": "(\\p{Alpha}+)(((?<!super|self|party)|(?<=\\>))::)((\\b(\\p{Alpha}+)\\b|\\*)(?!::|\\())",
 					"captures": {
 						"1": {
 							"name": "entity.name.namespace.jacy"
@@ -1030,7 +1030,7 @@
 				"func_call": {
 					"comment": "Function call",
 					"name": "meta.function.call.jacy",
-					"begin": "((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?<=[\\>\\)\\]\\}\\?\\!])|(?<=\\p{L}))\\s*(\\()",
+					"begin": "((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?<=[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
 					"beginCaptures": {
 						"2": {
 							"name": "entity.name.function.call.jacy"
