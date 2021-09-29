@@ -845,7 +845,7 @@
 						{
 							"name": "meta.definition.variable.pattern.jacy",
 							"begin": "(?<=(\\blet\\b))",
-							"end": "(?=[:=])",
+							"end": "(?=[:=;])",
 							"patterns": [
 								{"include": "#comments"},
 								{"include": "#pats"}
@@ -1030,7 +1030,7 @@
 				"func_call": {
 					"comment": "Function call",
 					"name": "meta.function.call.jacy",
-					"begin": "((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?:[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
+					"begin": "((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?:[\\>\\)\\]\\}\\?\\!])|(?<=\\p{L}))\\s*(\\()",
 					"beginCaptures": {
 						"2": {
 							"name": "entity.name.function.call.jacy"
