@@ -117,6 +117,11 @@
 					"match": "!|\\+(?!\\+)|-(?!-)|/|\\*|%|\\^|&|\\||<<|>>"
 				},
 				{
+					"comment": "Range operators",
+					"name": "keyword.operator.range.jacy",
+					"match": "..|..="
+				},
+				{
 					"comment": "Mistaken operators",
 					"name": "invalid.illegal.jacy",
 					"match": "\\+\\+|--"
