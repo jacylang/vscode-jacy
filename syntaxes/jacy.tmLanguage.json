@@ -809,6 +809,10 @@
 					"name": "storage.modifier.ref.pattern.jacy"
 				},
 				{
+					"match": "\\bmut\\b",
+					"name": "storage.modifier.mut.pattern.jacy"
+				},
+				{
 					"match": "([A-Z]\\p{Alpha}+)\\s*(?=[\\{\\(])",
 					"name": "entity.name.type.jacy"
 				},
