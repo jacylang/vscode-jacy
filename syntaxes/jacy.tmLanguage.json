@@ -1044,7 +1044,7 @@
 				"func_call": {
 					"comment": "Function call",
 					"name": "meta.function.call.jacy",
-					"begin": "(::)?((\\p{Ll}\\p{L}*)|(\\p{Lu}\\p{L}*)|(?<=[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
+					"begin": "(::)?(([\\p{Ll}_][\\p{L}_]*)|(\\p{Lu}[\\p{L}_]*)|(?<=[\\>\\)\\]\\}\\?\\!]))\\s*(\\()",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.operator.namespace.jacy"
