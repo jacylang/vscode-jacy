@@ -122,6 +122,11 @@
 					"match": "\\.\\.|\\.\\.="
 				},
 				{
+					"comment": "Spread operator/punctuation",
+					"name": "keyword.operator.spread.jacy",
+					"match": "\\.\\.\\."
+				},
+				{
 					"comment": "Mistaken operators",
 					"name": "invalid.illegal.jacy",
 					"match": "\\+\\+|--"
