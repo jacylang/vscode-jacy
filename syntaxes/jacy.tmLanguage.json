@@ -103,7 +103,7 @@
 				},
 				{
 					"comment": "Boolean operators",
-					"name": "keyword.operator.logic.boolean.jacy",
+					"name": "keyword.operator.word.logic.jacy",
 					"match": "\\b(or|and)\\b"
 				},
 				{
@@ -119,7 +119,7 @@
 				{
 					"comment": "Range operators",
 					"name": "keyword.operator.range.jacy",
-					"match": "..|..="
+					"match": "\\.\\.|\\.\\.="
 				},
 				{
 					"comment": "Mistaken operators",
