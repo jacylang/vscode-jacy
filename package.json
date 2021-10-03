@@ -9,6 +9,9 @@
         "color": "#fffcfc",
         "theme": "light"
     },
+    "bugs": {
+        "url": "https://github.com/jacylang/vscode-jacy/issues"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/jacylang/vscode-jacy"
@@ -18,8 +21,16 @@
     },
     "categories": [
         "Programming Languages",
-        "Snippets"
+        "Snippets",
+        "Themes"
     ],
+    "keywords": [
+        "jacy",
+        "programming language",
+        "rust",
+        "syntax highlighting"
+    ],
+    "preview": true,
     "main": "./out/extension.js",
     "activationEvents": [
         "onLanguage:jacy",
