@@ -282,7 +282,7 @@
 				},
 				{
 					"name": "entity.name.type.jacy",
-					"match": "[A-Z][A-Za-z_]*"
+					"match": "\\b([A-Z][A-Za-z_]*)\\b"
 				}
 			],
 			"repository": {
@@ -738,10 +738,10 @@
 			"begin": "(@)\\s*(\\p{Alpha}+)",
 			"beginCaptures": {
 				"1": {
-					"name": "entity.other.attribute-name.at.jacy"
+					"name": "punctuation.definition.attribute.jacy"
 				},
 				"2": {
-					"name": "entity.other.attribute-name.jacy"
+					"name": "entity.other.attribute.jacy"
 				},
 				"3": {
 					"name": "punctuation.definition.attr.arguments.begin.jacy"
@@ -900,12 +900,13 @@
 				{"include": "#comments"},
 				{"include": "#expr_keywords"},
 				{"include": "#func_call"},
-				{"include": "#literals"},
 				{"include": "#block_expr"},
 				{"include": "#path"},
 				{"include": "#self"},
 				{"include": "#types"},
-				{"include": "#tuple"}
+				{"include": "#tuple"},
+				{"include": "#literals"},
+				{"include": "#infix_call"}
 			],
 			"repository": {
 				"self": {
@@ -1059,7 +1060,7 @@
 							"name": "punctuation.definition.arguments.begin.jacy"
 						}
 					},
-					"end": "(?=\\))",
+					"end": "\\)",
 					"endCaptures": {
 						"0": {
 							"name": "punctuation.definition.arguments.end.jacy"
@@ -1068,6 +1069,22 @@
 					"patterns": [
 						{"include": "#named_list"}
 					]
+				},
+				"infix_call": {
+					"comment": "Infix function call",
+					"name": "entity.name.function.call.jacy",
+					"match": "(?<=[\\p{L}\\)\\]])\\s+(\\p{L}+)\\s+(?=[\\p{L}\\(\\[])",
+					"captures": {
+						"1": {
+							"name": ""
+						},
+						"2": {
+							"name": "entity.name.function.call.jacy"
+						},
+						"3": {
+							"name": ""
+						}
+					}
 				},
 				"tuple": {
 					"name": "meta.tuple.expression.jacy",
