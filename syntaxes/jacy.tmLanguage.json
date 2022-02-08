@@ -370,6 +370,7 @@
 		},
 		"items": {
 			"patterns": [
+				{"include": "#comments"},
 				{"include": "#item_keywords"},
 				{"include": "#func"},
 				{"include": "#init"},
@@ -790,6 +791,18 @@
 					"patterns": [
 						{"include": "#expressions"},
 						{"include": "#named_list"}
+					]
+				},
+				{
+					"begin": "=",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.assign.parameter.jacy"
+						}
+					},
+					"end": ",|\\)",
+					"patterns": [
+						{"include": "#expressions"}
 					]
 				},
 				{
