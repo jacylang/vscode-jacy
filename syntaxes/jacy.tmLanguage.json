@@ -466,6 +466,7 @@
 						}
 					},
 					"patterns": [
+						{"include": "#comments"},
 						{
 							"begin": "\\b(\\p{Alpha}+)\\b\\s*(?!:)",
 							"end": "(?=:)",
@@ -817,6 +818,10 @@
 		},
 		"pats": {
 			"patterns": [
+				{
+					"match": "(&)",
+					"name": "storage.modifier.borrow.pattern.jacy"
+				},
 				{
 					"match": "\\bref\\b",
 					"name": "storage.modifier.ref.pattern.jacy"
